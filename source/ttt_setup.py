@@ -1,6 +1,3 @@
-from source.view import View
-from player_builder import PlayerBuilder
-
 class TTTSetup(object):
 
   def __init__(self, view, player_builder):
@@ -13,7 +10,7 @@ class TTTSetup(object):
 
   def assign_player_names(self, play_mode):
     players = [self.player_builder.build_human_player(self.view.get_player_name())]
-    if play_mode == 1:
+    if play_mode == '1':
       players.append(self.player_builder.build_human_player(self.view.get_player_name()))
     else:
       players.append(self.player_builder.build_computer_player('Computer'))
