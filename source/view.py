@@ -19,6 +19,9 @@ class View(object):
       user_input = self.io.get_user_input('')
     return user_input
 
+  def get_player_name(self):
+    self.io.get_user_input('Player, what is your name?')
+
   def __is_valid_selection(self, input):
     empty_string = ''
     return not empty_string and input.isdigit()
