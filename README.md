@@ -19,7 +19,7 @@ Tic tac toe is a console application built with Python. The classic game of tic 
 From the root directory of your cloned repository, type
 
 ``` python
-python game.py
+python ttt.py
 ```
 
 ## Running the Tests
