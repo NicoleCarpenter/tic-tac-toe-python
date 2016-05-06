@@ -44,4 +44,5 @@ class TestBoard(unittest.TestCase):
     active_board = [' '] * self.board_size
     marker = 'X'
     self.board.place_piece(marker, 2, active_board)
+    self.assertIn((' ' + marker), active_board)
     self.assertEqual(active_board[1], ' ' + marker)

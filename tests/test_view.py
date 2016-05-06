@@ -23,3 +23,9 @@ class TestView(unittest.TestCase):
     board_size = 9
     self.assertEqual(self.view.get_player_move(board_size), '2')
     self.assertEqual(self.io.get_user_input_called, True)
+
+  def test_print_board(self):
+    board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    self.view.print_board(board)
+    self.assertEqual(self.io.display_called, True)
+    self.assertEqual(self.io.output_stream, board)
