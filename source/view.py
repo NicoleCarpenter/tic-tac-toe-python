@@ -1,7 +1,7 @@
 import abc
 from source.viewable import Viewable
 
-class View(object):
+class View(Viewable):
 
   def __init__(self, io):
     self.io = io
@@ -33,4 +33,4 @@ class View(object):
 
   def __is_valid_number(self, input):
     empty_string = ''
-    return not empty_string and input.isdigit()
+    return not empty_string and input.isdigit() and input > 0

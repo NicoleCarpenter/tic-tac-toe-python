@@ -4,12 +4,16 @@ from source.mock_view import MockView
 from source.player_builder import PlayerBuilder
 from source.human_player import HumanPlayer
 from source.computer_player import ComputerPlayer
+from source.human_move_generator import HumanMoveGenerator
+from source.computer_move_generator import ComputerMoveGenerator
 
 class TestTTTSetup(unittest.TestCase):
 
   def setUp(self):
     view = MockView()
-    player_builder = PlayerBuilder()
+    human_move_generator = HumanMoveGenerator(view)
+    computer_move_generator = ComputerMoveGenerator()
+    player_builder = PlayerBuilder(human_move_generator, computer_move_generator)
     self.ttt_setup = TTTSetup(view, player_builder)
 
   def test_assign_game_mode(self):
