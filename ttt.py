@@ -1,4 +1,6 @@
 from lib.io import IO
+from lib.ttt_move_validator import TTTMoveValidator
+from lib.selection_validator import SelectionValidator
 from lib.view import View
 from lib.human_move_generator import HumanMoveGenerator
 from lib.computer_move_generator import ComputerMoveGenerator
@@ -9,16 +11,18 @@ from lib.ttt_board import TTTBoard
 
 if __name__ == '__main__':
   io = IO()
-  view = View(io)
+  move_validator = TTTMoveValidator()
+  selection_validator = SelectionValidator()
+  view = View(io, move_validator, selection_validator)
   human_move_generator = HumanMoveGenerator(view)
-  computer_move_generator = ComputerMoveGenerator()
+  computer_move_generator = ComputerMoveGenerator(move_validator)
   player_builder = PlayerBuilder(human_move_generator, computer_move_generator)
   tttsetup = TTTSetup(view, player_builder)
 
-  tttboard = TTTBoard()
+  board_size = 9
+  tttboard = TTTBoard(board_size)
 
-  play_mode = tttsetup.assign_play_mode()
-  players = tttsetup.assign_player_names(play_mode)
+  players = [player_builder.build_human_player('Player 1', 'X'), player_builder.build_computer_player('Computer', 'O')]
 
   game = TTTGame(view, tttboard, players)
   game.play_game()
