@@ -23,8 +23,11 @@ class View(Viewable):
   def get_player_name(self, order):
     return self.io.get_user_input('{0} player, what is your name?'.format(order))
 
+  def prompt_player_move(self, player_name):
+    self.io.display('{0}, select a position for your move: '.format(player_name))
+
   def get_player_move(self, board_size, active_board):
-    move = self.io.get_user_input('Select a position for your move: ')
+    move = self.io.get_user_input('')
     while not self.move_validator.is_valid(move, board_size, active_board):
       self.io.display('Invalid move')
       move = self.io.get_user_input('Select an open space from 1 to {0}: '.format(board_size))

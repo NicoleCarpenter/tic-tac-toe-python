@@ -25,23 +25,43 @@ class TestTTTSetup(unittest.TestCase):
     self.assertEquals(self.view.get_play_mode_called, True)
     self.assertEquals(self.view.get_play_mode_called_with, options)
 
+  def test_create_anonymous_players(self):
+    player_v_player_option = '1'
+    player_v_computer_option = '2'
+
+    players = self.setup.create_anonymous_players(player_v_player_option)
+    self.assertIsInstance(players[0], HumanPlayer)
+    self.assertIsInstance(players[1], HumanPlayer)
+    self.assertEquals(players[0].name, 'Player 1')
+    self.assertEquals(players[1].name, 'Player 2')
+    self.assertEquals(players[0].marker, 'X')
+    self.assertEquals(players[1].marker, 'O')
+
+    players = self.setup.create_anonymous_players(player_v_computer_option)
+    self.assertIsInstance(players[0], HumanPlayer)
+    self.assertIsInstance(players[1], ComputerPlayer)
+    self.assertEquals(players[0].name, 'Player 1')
+    self.assertEquals(players[1].name, 'Computer')
+    self.assertEquals(players[0].marker, 'X')
+    self.assertEquals(players[1].marker, 'O')
+
   def test_assign_player_names(self):
     player_v_player_option = '1'
-    self.view.stub_get_player_name('Jack')
+    self.view.stub_get_player_name('Player 1')
     players = self.setup.assign_player_names(player_v_player_option)
     self.assertIsInstance(players[0], HumanPlayer)
     self.assertIsInstance(players[1], HumanPlayer)
-    self.assertEquals(players[0].name, 'Jack')
+    self.assertEquals(players[0].name, 'Player 1')
     self.assertEquals(self.view.get_player_name_called, True)
     self.assertEquals(self.view.get_player_name_called_with, 'Second')
 
 
     player_v_computer_option = '2'
-    self.view.stub_get_player_name('Jill')
+    self.view.stub_get_player_name('Player 2')
     players = self.setup.assign_player_names(player_v_computer_option)
     self.assertIsInstance(players[0], HumanPlayer)
     self.assertIsInstance(players[1], ComputerPlayer)
-    self.assertEquals(players[0].name, 'Jill')
+    self.assertEquals(players[0].name, 'Player 2')
     self.assertEquals(players[1].name, 'Computer')
     self.assertEquals(self.view.get_player_name_called, True)
     self.assertEquals(self.view.get_player_name_called_with, 'First')

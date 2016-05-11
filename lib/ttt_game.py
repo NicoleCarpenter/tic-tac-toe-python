@@ -20,6 +20,7 @@ class TTTGame(object):
 
   def __player_turn(self, player):
     self.view.print_board(self.board_positions)
+    self.view.prompt_player_move(player.name)
     move = player.move_generator.select_space(self.board.board_size, self.board.active_board)
     self.board.place_piece(player.marker, int(move))
     self.view.print_board(self.board.format_board_to_string(self.board.active_board))

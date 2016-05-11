@@ -16,6 +16,10 @@ class Viewable(object):
     pass
 
   @abc.abstractmethod
+  def prompt_player_move(self, player):
+    pass
+
+  @abc.abstractmethod
   def get_player_move(self, board_size, active_board):
     pass
 

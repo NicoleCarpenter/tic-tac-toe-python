@@ -22,7 +22,8 @@ if __name__ == '__main__':
   board_size = 9
   tttboard = TTTBoard(board_size)
 
-  players = [player_builder.build_human_player('Player 1', 'X'), player_builder.build_computer_player('Computer', 'O')]
+  mode = tttsetup.assign_play_mode()
+  players = tttsetup.create_anonymous_players(mode)
 
   game = TTTGame(view, tttboard, players)
   game.play_game()

@@ -30,13 +30,18 @@ class TestView(unittest.TestCase):
     self.assertEquals(self.io.get_user_input_called, True)
     self.assertEquals(self.io.output_stream, 'First player, what is your name?')
 
+  def test_prompt_player_move(self):
+    player_name = 'Player 1'
+    self.view.prompt_player_move(player_name)
+    self.assertEquals(self.io.display_called, True)
+    self.assertEquals(self.io.output_stream, 'Player 1, select a position for your move: ')
+
   def test_get_player_move(self):
     self.io.stubbed_user_input = '2'
     active_board = ['  '] * 9
     board_size = 9
     self.assertEquals(self.view.get_player_move(board_size, active_board), '2')
     self.assertEquals(self.io.get_user_input_called, True)
-    self.assertEquals(self.io.output_stream, 'Select a position for your move: ')
 
   def test_print_board(self):
     board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
