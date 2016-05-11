@@ -1,5 +1,5 @@
 import abc
-from source.player import Player
+from lib.player import Player
 
 class HumanPlayer(Player):
 

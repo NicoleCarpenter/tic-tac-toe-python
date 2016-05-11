@@ -1,11 +1,11 @@
-from source.io import IO
-from source.view import View
-from source.human_move_generator import HumanMoveGenerator
-from source.computer_move_generator import ComputerMoveGenerator
-from source.player_builder import PlayerBuilder
-from source.ttt_setup import TTTSetup
-from source.ttt_game import TTTGame
-from source.ttt_board import TTTBoard
+from lib.io import IO
+from lib.view import View
+from lib.human_move_generator import HumanMoveGenerator
+from lib.computer_move_generator import ComputerMoveGenerator
+from lib.player_builder import PlayerBuilder
+from lib.ttt_setup import TTTSetup
+from lib.ttt_game import TTTGame
+from lib.ttt_board import TTTBoard
 
 if __name__ == '__main__':
   io = IO()

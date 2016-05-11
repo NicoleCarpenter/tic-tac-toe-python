@@ -1,6 +1,6 @@
 import unittest
-from source.view import View
-from source.mock_io import MockIO
+from lib.view import View
+from lib.mock_io import MockIO
 
 class TestView(unittest.TestCase):
 

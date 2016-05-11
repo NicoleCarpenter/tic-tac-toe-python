@@ -1,11 +1,11 @@
 import unittest
-from source.ttt_setup import TTTSetup
-from source.mock_view import MockView
-from source.player_builder import PlayerBuilder
-from source.human_player import HumanPlayer
-from source.computer_player import ComputerPlayer
-from source.human_move_generator import HumanMoveGenerator
-from source.computer_move_generator import ComputerMoveGenerator
+from lib.ttt_setup import TTTSetup
+from lib.mock_view import MockView
+from lib.player_builder import PlayerBuilder
+from lib.human_player import HumanPlayer
+from lib.computer_player import ComputerPlayer
+from lib.human_move_generator import HumanMoveGenerator
+from lib.computer_move_generator import ComputerMoveGenerator
 
 class TestTTTSetup(unittest.TestCase):
 

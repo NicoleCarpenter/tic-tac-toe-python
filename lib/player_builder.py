@@ -1,5 +1,5 @@
-from source.human_player import HumanPlayer
-from source.computer_player import ComputerPlayer
+from lib.human_player import HumanPlayer
+from lib.computer_player import ComputerPlayer
 
 class PlayerBuilder(object):
 
