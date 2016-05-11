@@ -16,6 +16,10 @@ class Viewable(object):
     pass
 
   @abc.abstractmethod
+  def display_player_order(self, player_name):
+    pass
+
+  @abc.abstractmethod
   def prompt_player_move(self, player):
     pass
 

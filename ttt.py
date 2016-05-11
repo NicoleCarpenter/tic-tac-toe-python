@@ -23,7 +23,8 @@ if __name__ == '__main__':
   tttboard = TTTBoard(board_size)
 
   mode = tttsetup.assign_play_mode()
-  players = tttsetup.create_anonymous_players(mode)
+  unordered_players = tttsetup.create_anonymous_players(mode)
+  ordered_players = tttsetup.assign_player_order(unordered_players)
 
-  game = TTTGame(view, tttboard, players)
+  game = TTTGame(view, tttboard, ordered_players)
   game.play_game()

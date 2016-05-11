@@ -1,3 +1,5 @@
+import random
+
 class TTTSetup(object):
 
   def __init__(self, view, player_builder):
@@ -23,4 +25,9 @@ class TTTSetup(object):
       players.append(self.player_builder.build_human_player(self.view.get_player_name('Second'), 'O'))
     else:
       players.append(self.player_builder.build_computer_player('Computer', 'O'))
+    return players
+
+  def assign_player_order(self, players):
+    random.shuffle(players)
+    self.view.display_player_order(players[0].name)
     return players

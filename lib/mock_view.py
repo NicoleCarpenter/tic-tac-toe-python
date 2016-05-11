@@ -12,6 +12,8 @@ class MockView(Viewable):
     self.get_player_name_called = False
     self.get_player_name_called_with = ''
     self.player_name_return = ''
+    self.display_player_order_called = False
+    self.display_player_order_called_with = ''
     self.prompt_player_move_called = False
     self.prompt_player_move_called_with = ''
     self.get_player_move_called = False
@@ -42,6 +44,10 @@ class MockView(Viewable):
 
   def stub_get_player_name(self, player_name_return):
     self.player_name_return = player_name_return
+
+  def display_player_order(self, player_name):
+    self.display_player_order_called = True
+    self.display_player_order_called_with = player_name
 
   def prompt_player_move(self, player_name):
     self.prompt_player_move_called = True
