@@ -12,6 +12,8 @@ class MockView(Viewable):
     self.get_player_name_called = False
     self.get_player_name_called_with = ''
     self.player_name_return = ''
+    self.prompt_player_move_called = False
+    self.prompt_player_move_called_with = ''
     self.get_player_move_called = False
     self.get_player_move_called_with = ''
     self.player_move_return = ''
@@ -40,6 +42,10 @@ class MockView(Viewable):
 
   def stub_get_player_name(self, player_name_return):
     self.player_name_return = player_name_return
+
+  def prompt_player_move(self, player_name):
+    self.prompt_player_move_called = True
+    self.prompt_player_move_called_with = player_name
 
   def get_player_move(self, board_size, active_board):
     self.get_player_move_called = True

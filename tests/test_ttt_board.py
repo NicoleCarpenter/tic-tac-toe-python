@@ -1,6 +1,6 @@
 import unittest
 from lib.mock_move_generator import MockMoveGenerator
-from lib.mock_player import MockPlayer
+from lib.human_player import HumanPlayer
 from lib.ttt_board import TTTBoard
 
 class TestTTTBoard(unittest.TestCase):
@@ -47,7 +47,7 @@ class TestTTTBoard(unittest.TestCase):
   
   def test_winning_conditions_met(self):
     generator = MockMoveGenerator()
-    player = MockPlayer('Player 1', 'X', generator)
+    player = HumanPlayer('Player 1', 'X', generator)
     
     self.board.active_board = [' X',' X',' X','  ','  ','  ','  ','  ','  ']
     winner = self.board.winning_conditions_met(player)
