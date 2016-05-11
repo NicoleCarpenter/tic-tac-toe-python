@@ -1,31 +1,56 @@
 import unittest
-from lib.view import View
 from lib.mock_io import MockIO
+from lib.ttt_move_validator import TTTMoveValidator
+from lib.selection_validator import SelectionValidator
+from lib.view import View
 
 class TestView(unittest.TestCase):
 
   def setUp(self):
     self.io = MockIO()
-    self.view = View(self.io)
+    move_validator = TTTMoveValidator()
+    selection_validator = SelectionValidator()
+    self.view = View(self.io, move_validator, selection_validator)
 
   def test_prompt_play_mode(self):
-    self.view.prompt_play_mode()
-    self.assertEqual(self.io.display_called, True)
-    self.assertEqual(self.io.output_stream, '2 - Player vs Computer')
+    self.view.prompt_play_mode(['option1', 'option2'])
+    self.assertEquals(self.io.display_called, True)
+    self.assertEquals(self.io.output_stream, 'option2')
 
   def test_get_play_mode(self):
     self.io.stubbed_user_input = '1'
-    self.assertEqual(self.view.get_play_mode(), '1')
-    self.assertEqual(self.io.get_user_input_called, True)
+    options = ['1', '2']
+    self.assertEquals(self.view.get_play_mode(options), '1')
+    self.assertEquals(self.io.get_user_input_called, True)
+
+  def test_get_player_name(self):
+    order = 'First'
+    self.io.stubbed_user_input = 'John Doe'
+    self.assertEquals(self.view.get_player_name(order), 'John Doe')
+    self.assertEquals(self.io.get_user_input_called, True)
+    self.assertEquals(self.io.output_stream, 'First player, what is your name?')
 
   def test_get_player_move(self):
     self.io.stubbed_user_input = '2'
+    active_board = ['  '] * 9
     board_size = 9
-    self.assertEqual(self.view.get_player_move(board_size), '2')
-    self.assertEqual(self.io.get_user_input_called, True)
+    self.assertEquals(self.view.get_player_move(board_size, active_board), '2')
+    self.assertEquals(self.io.get_user_input_called, True)
+    self.assertEquals(self.io.output_stream, 'Select a position for your move: ')
 
   def test_print_board(self):
     board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     self.view.print_board(board)
-    self.assertEqual(self.io.display_called, True)
-    self.assertEqual(self.io.output_stream, board)
+    self.assertEquals(self.io.display_called, True)
+    self.assertEquals(self.io.output_stream, board)
+
+  def test_display_tie_message(self):
+    self.view.display_tie_message()
+    self.assertEquals(self.io.display_called, True)
+    self.assertEquals(self.io.output_stream, 'Game over. It\'s a tie.')
+
+  def test_display_winning_message(self):
+    wining_player_name = 'Player 1'
+    self.view.display_winning_message(wining_player_name)
+    self.assertEquals(self.io.display_called, True)
+    self.assertEquals(self.io.output_stream, 'Game over. Player 1 wins!')

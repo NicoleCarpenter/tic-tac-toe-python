@@ -11,6 +11,7 @@ class MockIO(Interactable):
 
   def get_user_input(self, prompt):
     self.get_user_input_called = True
+    self.output_stream = prompt
     return self.stubbed_user_input
 
   def display(self, output):

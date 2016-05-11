@@ -5,3 +5,6 @@ class Player(object):
 
   def name(self):
     pass
+
+  def marker(self):
+    pass

@@ -1,7 +1,7 @@
 import abc
 from lib.player import Player
 
-class HumanPlayer(Player):
+class MockPlayer(Player):
 
   def __init__(self, name, marker, move_generator):
     self.name = name
