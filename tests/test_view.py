@@ -30,6 +30,12 @@ class TestView(unittest.TestCase):
     self.assertEquals(self.io.get_user_input_called, True)
     self.assertEquals(self.io.output_stream, 'First player, what is your name?')
 
+  def test_display_player_order(self):
+    player_name = 'Player 1'
+    self.view.display_player_order(player_name)
+    self.assertEquals(self.io.display_called, True)
+    self.assertEquals(self.io.output_stream, 'A coin has been flipped to determine order. Player 1 will go first.')
+
   def test_prompt_player_move(self):
     player_name = 'Player 1'
     self.view.prompt_player_move(player_name)

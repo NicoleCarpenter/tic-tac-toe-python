@@ -23,6 +23,9 @@ class View(Viewable):
   def get_player_name(self, order):
     return self.io.get_user_input('{0} player, what is your name?'.format(order))
 
+  def display_player_order(self, player_name):
+    self.io.display('A coin has been flipped to determine order. {0} will go first.'.format(player_name))
+
   def prompt_player_move(self, player_name):
     self.io.display('{0}, select a position for your move: '.format(player_name))
 

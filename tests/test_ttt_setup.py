@@ -27,8 +27,6 @@ class TestTTTSetup(unittest.TestCase):
 
   def test_create_anonymous_players(self):
     player_v_player_option = '1'
-    player_v_computer_option = '2'
-
     players = self.setup.create_anonymous_players(player_v_player_option)
     self.assertIsInstance(players[0], HumanPlayer)
     self.assertIsInstance(players[1], HumanPlayer)
@@ -37,6 +35,7 @@ class TestTTTSetup(unittest.TestCase):
     self.assertEquals(players[0].marker, 'X')
     self.assertEquals(players[1].marker, 'O')
 
+    player_v_computer_option = '2'
     players = self.setup.create_anonymous_players(player_v_computer_option)
     self.assertIsInstance(players[0], HumanPlayer)
     self.assertIsInstance(players[1], ComputerPlayer)
@@ -55,7 +54,6 @@ class TestTTTSetup(unittest.TestCase):
     self.assertEquals(self.view.get_player_name_called, True)
     self.assertEquals(self.view.get_player_name_called_with, 'Second')
 
-
     player_v_computer_option = '2'
     self.view.stub_get_player_name('Player 2')
     players = self.setup.assign_player_names(player_v_computer_option)
@@ -66,3 +64,9 @@ class TestTTTSetup(unittest.TestCase):
     self.assertEquals(self.view.get_player_name_called, True)
     self.assertEquals(self.view.get_player_name_called_with, 'First')
 
+  def test_assign_player_order(self):
+    players = [self.setup.player_builder.build_human_player('Player 1', 'X'), 
+               self.setup.player_builder.build_human_player('Player 1', 'X')]
+    self.setup.assign_player_order(players)
+    self.assertEquals(self.view.display_player_order_called, True)
+    self.assertEquals(self.view.display_player_order_called_with, players[0].name)
