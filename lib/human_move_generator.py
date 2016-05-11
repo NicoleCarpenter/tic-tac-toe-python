@@ -1,6 +1,6 @@
 import abc
 import random
-from source.move_generator import MoveGenerator
+from lib.move_generator import MoveGenerator
 
 class HumanMoveGenerator(MoveGenerator):
 

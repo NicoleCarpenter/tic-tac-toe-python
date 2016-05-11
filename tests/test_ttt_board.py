@@ -1,5 +1,5 @@
 import unittest
-from source.ttt_board import TTTBoard
+from lib.ttt_board import TTTBoard
 
 class TestTTTBoard(unittest.TestCase):
 

@@ -1,6 +1,6 @@
 import abc
 import itertools
-from source.board import Board
+from lib.board import Board
 
 class TTTBoard(Board):
 

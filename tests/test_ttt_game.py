@@ -1,9 +1,9 @@
 import unittest
-from source.mock_view import MockView
-from source.ttt_board import TTTBoard
-from source.ttt_game import TTTGame
-from source.human_move_generator import HumanMoveGenerator
-from source.human_player import HumanPlayer
+from lib.mock_view import MockView
+from lib.ttt_board import TTTBoard
+from lib.ttt_game import TTTGame
+from lib.human_move_generator import HumanMoveGenerator
+from lib.human_player import HumanPlayer
 
 class TestTTTGame(unittest.TestCase):
 

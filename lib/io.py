@@ -1,5 +1,5 @@
 import abc
-from source.interactable import Interactable
+from lib.interactable import Interactable
 
 class IO(Interactable):
 

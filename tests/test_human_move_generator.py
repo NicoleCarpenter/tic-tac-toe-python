@@ -1,6 +1,6 @@
 import unittest
-from source.human_move_generator import HumanMoveGenerator
-from source.mock_view import MockView
+from lib.human_move_generator import HumanMoveGenerator
+from lib.mock_view import MockView
 
 class TestHumanMoveGenerator(unittest.TestCase):
 

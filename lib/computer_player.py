@@ -1,6 +1,6 @@
 import abc
 import random
-from source.player import Player
+from lib.player import Player
 
 class ComputerPlayer(Player):
 

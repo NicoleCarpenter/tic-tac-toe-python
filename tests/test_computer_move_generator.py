@@ -1,5 +1,5 @@
 import unittest
-from source.computer_move_generator import ComputerMoveGenerator
+from lib.computer_move_generator import ComputerMoveGenerator
 
 class TestComputerMoveGenerator(unittest.TestCase):
 
