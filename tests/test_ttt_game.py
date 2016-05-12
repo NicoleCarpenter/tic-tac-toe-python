@@ -9,8 +9,8 @@ class TestTTTGame(unittest.TestCase):
 
   def setUp(self):
     self.view = MockView()
-    board_size = 9
-    self.board = MockTTTBoard(board_size)
+    self.board_size = 9
+    self.board = MockTTTBoard(self.board_size)
     self.move_generator = MockMoveGenerator()
     self.players = [HumanPlayer('Player 1', 'X', self.move_generator),
                HumanPlayer('Player 2', 'O', self.move_generator)]
@@ -18,6 +18,15 @@ class TestTTTGame(unittest.TestCase):
 
   def tearDown(self):
     del self.game
+
+  def test_view(self):
+    self.assertEquals(self.game.view, self.view)
+
+  def test_board(self):
+    self.assertEquals(self.game.board, self.board)
+
+  def test_players(self):
+    self.assertEquals(self.game.players, self.players)
 
   def test_play_game_tie(self):
     self.players[0].move_generator.stub_select_space_return('1')
@@ -39,6 +48,7 @@ class TestTTTGame(unittest.TestCase):
     self.assertEquals(self.view.display_winning_message_called_with, '')
     self.assertEquals(self.game.game_over, True)
     self.assertEquals(self.game.winner, False)
+    self.assertEquals(self.view.clear_screen_called, True)
 
   def test_play_game_win(self):
     self.players[0].move_generator.stub_select_space_return('1')
@@ -60,3 +70,4 @@ class TestTTTGame(unittest.TestCase):
     self.assertEquals(self.view.display_winning_message_called_with, 'Player 1')
     self.assertEquals(self.game.game_over, True)
     self.assertEquals(self.game.winner, self.players[0])
+    self.assertEquals(self.view.clear_screen_called, True)

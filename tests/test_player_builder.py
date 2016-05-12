@@ -7,8 +7,14 @@ from lib.mock_move_generator import MockMoveGenerator
 class TestPlayerBuilder(unittest.TestCase):
 
   def setUp(self):
-    mock_move_generator = MockMoveGenerator()
-    self.player_builder = PlayerBuilder(mock_move_generator, mock_move_generator)
+    self.mock_move_generator = MockMoveGenerator()
+    self.player_builder = PlayerBuilder(self.mock_move_generator, self.mock_move_generator)
+
+  def test_human_move_generator(self):
+    self.assertEquals(self.player_builder.human_move_generator, self.mock_move_generator)
+
+  def test_computer_move_generator(self):
+    self.assertEquals(self.player_builder.computer_move_generator, self.mock_move_generator)
 
   def test_build_human_player(self):
     player = self.player_builder.build_human_player('Human Player', 'X')

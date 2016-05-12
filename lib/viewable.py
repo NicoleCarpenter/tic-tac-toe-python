@@ -38,3 +38,11 @@ class Viewable(object):
   @abc.abstractmethod
   def display_winning_message(self, winning_player_name):
     pass
+
+  @abc.abstractmethod
+  def clear_screen(self):
+    pass
+
+  @abc.abstractmethod
+  def loading(self):
+    pass

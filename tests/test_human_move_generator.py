@@ -8,9 +8,12 @@ class TestHumanMoveGenerator(unittest.TestCase):
     self.view = MockView()
     self.move_generator = HumanMoveGenerator(self.view)
 
+  def test_view(self):
+    self.assertEquals(self.move_generator.view, self.view)
+
   def test_select_space(self):
-    active_board = ['  '] * 9
     board_size = 9
+    active_board = ['  '] * board_size
     self.view.stub_get_player_move('5')
     move = self.move_generator.select_space(board_size, active_board)
     self.assertEquals(self.view.get_player_move_called, True)
