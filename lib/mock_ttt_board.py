@@ -7,6 +7,7 @@ class MockTTTBoard(Board):
     self.board_size = board_size
     self.active_board = ['  '] * self.board_size
     self.format_board_to_string_called = False
+    self.format_board_to_string_return = ''
     self.find_printable_board_positions_called = False
     self.printable_board_positions_return = ''
     self.place_piece_called = False
@@ -17,6 +18,10 @@ class MockTTTBoard(Board):
   def format_board_to_string(self, board):
     self.format_board_to_string_called = True
     self.format_board_to_string_called_with = board
+    return self.format_board_to_string_return
+
+  def stub_format_board_to_string(self, formatted_board):
+    self.format_board_to_string_return = formatted_board
 
   def find_printable_board_positions(self):
     self.find_printable_board_positions_called = True

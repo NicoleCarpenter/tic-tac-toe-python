@@ -24,6 +24,9 @@ class MockView(Viewable):
     self.display_tie_message_called = False
     self.display_winning_message_called = False
     self.display_winning_message_called_with = ''
+    self.clear_screen_called = False
+    self.loading_called = False
+    self.loading_called_with = ''
 
   def prompt_play_mode(self, options):
     self.prompt_play_mode_called = True
@@ -61,6 +64,9 @@ class MockView(Viewable):
   def stub_get_player_move(self, player_move_return):
     self.player_move_return = player_move_return
 
+  def display_computer_thinking(self):
+    self.display_computer_thinking_called = True
+
   def print_board(self, board):
     self.print_board_called = True
     self.print_board_called_with = board
@@ -71,3 +77,10 @@ class MockView(Viewable):
   def display_winning_message(self, winning_player_name):
     self.display_winning_message_called = True
     self.display_winning_message_called_with = winning_player_name
+
+  def clear_screen(self):
+    self.clear_screen_called = True
+
+  def loading(self, seconds_to_delay):
+    self.loading_called = True
+    self.loading_called_with = seconds_to_delay

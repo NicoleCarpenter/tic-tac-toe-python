@@ -7,6 +7,7 @@ class TTTSetup(object):
     self.player_builder = player_builder
 
   def assign_play_mode(self):
+    self.view.clear_screen()
     options = ['1 - Player vs Player', '2 - Player vs Computer']
     self.view.prompt_play_mode(options)
     return self.view.get_play_mode(options)
@@ -30,4 +31,5 @@ class TTTSetup(object):
   def assign_player_order(self, players):
     random.shuffle(players)
     self.view.display_player_order(players[0].name)
+    self.view.loading(2)
     return players

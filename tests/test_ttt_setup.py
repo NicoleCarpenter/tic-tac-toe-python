@@ -20,6 +20,7 @@ class TestTTTSetup(unittest.TestCase):
     options = ['1 - Player vs Player', '2 - Player vs Computer']
     self.view.stub_get_play_mode('1')
     self.assertEquals(self.setup.assign_play_mode(), '1')
+    self.assertEquals(self.view.clear_screen_called, True)
     self.assertEquals(self.view.prompt_play_mode_called, True)
     self.assertEquals(self.view.prompt_play_mode_called_with, options)
     self.assertEquals(self.view.get_play_mode_called, True)
@@ -70,3 +71,5 @@ class TestTTTSetup(unittest.TestCase):
     self.setup.assign_player_order(players)
     self.assertEquals(self.view.display_player_order_called, True)
     self.assertEquals(self.view.display_player_order_called_with, players[0].name)
+    self.assertEquals(self.view.loading_called, True)
+    self.assertEquals(self.view.loading_called_with, 2)

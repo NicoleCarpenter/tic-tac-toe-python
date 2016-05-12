@@ -11,5 +11,5 @@ class Board(object):
     pass
 
   @abc.abstractmethod
-  def place_piece(self, marker, space, active_board):
+  def place_piece(self, marker, space):
     pass

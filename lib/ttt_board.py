@@ -26,12 +26,9 @@ class TTTBoard(Board):
   def place_piece(self, marker, space):
     self.active_board[space-1] = (' ' + str(marker))
 
-  def find_winning_combinations(self):
-    return self.__separate_rows(self.board_positions) + self.__separate_columns(self.board_positions) + self.__separate_diagonals()
-
   def winning_conditions_met(self, player):
     player_board = self.__find_player_board(player)
-    winning_combinations = self.find_winning_combinations()
+    winning_combinations = self.__find_winning_combinations()
     for combo in winning_combinations:
       if self.__is_line_complete_for_player(combo, player_board):
         return True
@@ -42,6 +39,9 @@ class TTTBoard(Board):
 
   def __find_number_of_rows(self):
     return int(math.sqrt(self.board_size))
+
+  def __find_winning_combinations(self):
+    return self.__separate_rows(self.board_positions) + self.__separate_columns(self.board_positions) + self.__separate_diagonals()
 
   def __separate_rows(self, board):
     rows = self.__find_number_of_rows()

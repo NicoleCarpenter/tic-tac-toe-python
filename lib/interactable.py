@@ -10,3 +10,15 @@ class Interactable(object):
   @abc.abstractmethod
   def display(self, output):
     pass
+
+  @abc.abstractmethod
+  def sleep(self, seconds):
+    pass
+
+  @abc.abstractmethod
+  def display_with_sleep(self):
+    pass
+
+  @abc.abstractmethod
+  def clear(self):
+    pass
