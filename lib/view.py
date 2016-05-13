@@ -3,10 +3,11 @@ from lib.viewable import Viewable
 
 class View(Viewable):
 
-  def __init__(self, io, move_validator, selection_validator):
+  def __init__(self, io, move_validator, selection_validator, input_validator):
     self.io = io
     self.move_validator = move_validator
     self.selection_validator = selection_validator
+    self.input_validator = input_validator
 
   def prompt_play_mode(self, options):
     self.io.display('\nPlease select your method of play:')
@@ -21,7 +22,11 @@ class View(Viewable):
     return user_input
 
   def get_player_name(self, order):
-    return self.io.get_user_input('{0} player, what is your name?'.format(order))
+    name = self.io.get_user_input('{0} player, what is your name?'.format(order))
+    while not self.input_validator.is_valid(name):
+      self.io.display('Name cannot be blank')
+      name = self.io.get_user_input('What is your name?')
+    return name
 
   def display_player_order(self, player_name):
     self.io.display('Flipping a coin to determine order ')

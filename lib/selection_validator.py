@@ -1,4 +1,7 @@
-class SelectionValidator(object):
+import abc
+from lib.validator import Validator
+
+class SelectionValidator(Validator):
 
   def is_valid(self, user_input, options):
     empty_string = ''
