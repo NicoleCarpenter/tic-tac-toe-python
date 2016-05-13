@@ -1,4 +1,7 @@
-class TTTMoveValidator(object):
+import abc
+from lib.validator import Validator
+
+class TTTMoveValidator(Validator):
 
   def is_valid(self, move, board_size, active_board):
     return self.__is_valid_number(move) and self.__is_valid_space(board_size, move) and self.__is_open_space(active_board, move)

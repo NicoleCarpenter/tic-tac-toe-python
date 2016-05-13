@@ -2,6 +2,7 @@ import unittest
 from lib.mock_io import MockIO
 from lib.ttt_move_validator import TTTMoveValidator
 from lib.selection_validator import SelectionValidator
+from lib.input_validator import InputValidator
 from lib.view import View
 
 class TestView(unittest.TestCase):
@@ -10,7 +11,8 @@ class TestView(unittest.TestCase):
     self.io = MockIO()
     self.move_validator = TTTMoveValidator()
     self.selection_validator = SelectionValidator()
-    self.view = View(self.io, self.move_validator, self.selection_validator)
+    self.input_validator = InputValidator()
+    self.view = View(self.io, self.move_validator, self.selection_validator, self.input_validator)
 
   def tearDown(self):
     del self.io
@@ -23,6 +25,9 @@ class TestView(unittest.TestCase):
 
   def test_selection_validator(self):
     self.assertEquals(self.view.selection_validator, self.selection_validator)
+
+  def test_input_validator(self):
+    self.assertEquals(self.view.input_validator, self.input_validator)
 
   def test_prompt_play_mode(self):
     options = ['option1', 'option2']

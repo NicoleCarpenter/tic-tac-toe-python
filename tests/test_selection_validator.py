@@ -6,45 +6,18 @@ class TestSelectionValidator(unittest.TestCase):
   def setUp(self):
     self.validator = SelectionValidator()
 
-  def test_is_valid(self):
+  def is_valid_return(self, selection):
     options = ['1 - First', '2 - Second', '3 - Third']
-    
-    selection = '1'
-    is_valid = self.validator.is_valid(selection, options)
-    self.assertEquals(is_valid, True)
+    return self.validator.is_valid(selection, options)
 
-    selection = '3'
-    is_valid = self.validator.is_valid(selection, options)
-    self.assertEquals(is_valid, True)
-
-    selection = '0'
-    is_valid = self.validator.is_valid(selection, options)
-    self.assertEquals(is_valid, False)
-
-    selection = '-1'
-    is_valid = self.validator.is_valid(selection, options)
-    self.assertEquals(is_valid, False)
-
-    selection = '1.5'
-    is_valid = self.validator.is_valid(selection, options)
-    self.assertEquals(is_valid, False)
-
-    selection = '4'
-    is_valid = self.validator.is_valid(selection, options)
-    self.assertEquals(is_valid, False)
-
-    selection = ''
-    is_valid = self.validator.is_valid(selection, options)
-    self.assertEquals(is_valid, False)
-
-    selection = ' '
-    is_valid = self.validator.is_valid(selection, options)
-    self.assertEquals(is_valid, False)
-
-    selection = 'a'
-    is_valid = self.validator.is_valid(selection, options)
-    self.assertEquals(is_valid, False)
-
-    selection = '!'
-    is_valid = self.validator.is_valid(selection, options)
-    self.assertEquals(is_valid, False)
+  def test_is_valid(self):
+    self.assertEquals(self.is_valid_return('1'), True)
+    self.assertEquals(self.is_valid_return('3'), True)
+    self.assertEquals(self.is_valid_return('0'), False)
+    self.assertEquals(self.is_valid_return('-1'), False)
+    self.assertEquals(self.is_valid_return('1.5'), False)
+    self.assertEquals(self.is_valid_return('4'), False)
+    self.assertEquals(self.is_valid_return('a'), False)
+    self.assertEquals(self.is_valid_return('!'), False)
+    self.assertEquals(self.is_valid_return(''), False)
+    self.assertEquals(self.is_valid_return(' '), False)
