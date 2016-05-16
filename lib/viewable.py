@@ -4,15 +4,19 @@ class Viewable(object):
   __metaclass__ = abc.ABCMeta
 
   @abc.abstractmethod
-  def prompt_play_mode(self, options):
+  def prompt_numbered_options(self, options):
     pass
 
   @abc.abstractmethod
-  def get_play_mode(self, options):
+  def get_numbered_option_selection(self, options):
     pass
 
   @abc.abstractmethod
   def get_player_name(self, order):
+    pass
+
+  @abc.abstractmethod
+  def display_coin_flip(self):
     pass
 
   @abc.abstractmethod

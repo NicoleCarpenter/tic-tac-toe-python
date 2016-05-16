@@ -16,17 +16,17 @@ if __name__ == '__main__':
   input_validator = InputValidator()
   selection_validator = SelectionValidator()
   view = View(io, move_validator, selection_validator, input_validator)
+  
   human_move_generator = HumanMoveGenerator(view)
   computer_move_generator = ComputerMoveGenerator(move_validator, view)
   player_builder = PlayerBuilder(human_move_generator, computer_move_generator)
+  
   tttsetup = TTTSetup(view, player_builder)
 
   board_size = 9
   tttboard = TTTBoard(board_size)
 
-  mode = tttsetup.assign_play_mode()
-  unordered_players = tttsetup.assign_player_names(mode)
-  ordered_players = tttsetup.assign_player_order(unordered_players)
+  players = tttsetup.setup_game_players()
 
-  game = TTTGame(view, tttboard, ordered_players)
+  game = TTTGame(view, tttboard, players)
   game.play_game()

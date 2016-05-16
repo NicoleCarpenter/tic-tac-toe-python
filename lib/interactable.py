@@ -12,10 +12,6 @@ class Interactable(object):
     pass
 
   @abc.abstractmethod
-  def sleep(self, seconds):
-    pass
-
-  @abc.abstractmethod
   def display_with_sleep(self):
     pass
 
