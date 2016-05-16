@@ -15,7 +15,7 @@ class MockIO(Interactable):
     self.display_with_sleep_called_with = ''
     self.clear_called = False
 
-  def get_user_input(self, prompt):
+  def get_user_input(self, prompt=''):
     self.get_user_input_called = True
     self.get_user_input_called_with = prompt
     return self.stubbed_user_input
@@ -27,14 +27,10 @@ class MockIO(Interactable):
     self.display_called = True
     self.display_called_with = output
 
-  def sleep(self, seconds):
-    self.sleep_called = True
-    self.sleep_called_with = seconds
-
   def display_with_sleep(self, delay_time, output):
     self.display_with_sleep_called = True
     self.sleep_called = True
     self.display_with_sleep_called_with = output
-
+    
   def clear(self):
     self.clear_called = True

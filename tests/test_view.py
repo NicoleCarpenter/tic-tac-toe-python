@@ -29,16 +29,16 @@ class TestView(unittest.TestCase):
   def test_input_validator(self):
     self.assertEquals(self.view.input_validator, self.input_validator)
 
-  def test_prompt_play_mode(self):
+  def test_prompt_numbered_options(self):
     options = ['option1', 'option2']
-    self.view.prompt_play_mode(options)
+    self.view.prompt_numbered_options(options)
     self.assertEquals(self.io.display_called, True)
     self.assertEquals(self.io.display_called_with, options[-1])
 
-  def test_get_play_mode(self):
+  def test_get_numbered_options_selection(self):
     self.io.stub_user_input('1')
     options = ['1', '2']
-    self.assertEquals(self.view.get_play_mode(options), '1')
+    self.assertEquals(self.view.get_numbered_option_selection(options), '1')
     self.assertEquals(self.io.get_user_input_called, True)
     self.assertEquals(self.io.get_user_input_called_with, (''))
 
@@ -47,15 +47,19 @@ class TestView(unittest.TestCase):
     self.io.stub_user_input('John Doe')
     self.assertEquals(self.view.get_player_name(order), 'John Doe')
     self.assertEquals(self.io.get_user_input_called, True)
-    self.assertEquals(self.io.get_user_input_called_with, 'First player, what is your name?')
+    self.assertEquals(self.io.get_user_input_called_with, '\nFirst player, what is your name?')
+
+  def test_display_coin_flip(self):
+    self.view.display_coin_flip()
+    self.assertEquals(self.io.display_called, True)
+    self.assertEquals(self.io.display_called_with, '\nFlipping a coin to determine order ')
+    self.assertEquals(self.io.display_with_sleep_called, True)
 
   def test_display_player_order(self):
     player_name = 'Player 1'
     self.view.display_player_order(player_name)
     self.assertEquals(self.io.display_called, True)
     self.assertEquals(self.io.display_called_with, '\nPlayer 1 will go first')
-    self.assertEquals(self.io.display_with_sleep_called, True)
-    self.assertEquals(self.io.sleep_called, True)
 
   def test_prompt_player_move(self):
     player_name = 'Player 1'
