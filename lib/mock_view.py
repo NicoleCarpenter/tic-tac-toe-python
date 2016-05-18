@@ -18,6 +18,7 @@ class MockView(Viewable):
     self.get_player_move_called = False
     self.get_player_move_called_with = ''
     self.player_move_return = ''
+    self.display_computer_thinking_called = False
     self.print_board_called = False
     self.print_board_called_with = ''
     self.display_tie_message_called = False

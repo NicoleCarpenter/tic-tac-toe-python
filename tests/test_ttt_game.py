@@ -31,6 +31,7 @@ class TestTTTGame(unittest.TestCase):
   def test_play_game_tie(self):
     self.players[0].move_generator.stub_select_space_return('1')
     self.board.active_board = [' X'] * 9
+    self.board.stub_is_tie_condition_met(True)
     self.game.play_game()
 
     self.assertEquals(self.view.print_board_called, True)
@@ -41,8 +42,10 @@ class TestTTTGame(unittest.TestCase):
     self.assertEquals(self.board.place_piece_called_with, ['X', 1])
     self.assertEquals(self.board.format_board_to_string_called, True)
     self.assertEquals(self.board.format_board_to_string_called_with, self.board.active_board)
-    self.assertEquals(self.board.winning_conditions_met_called, True)
-    self.assertEquals(self.board.winning_conditions_met_return, '')
+    self.assertEquals(self.board.is_winning_conditions_met_called, True)
+    self.assertEquals(self.board.is_winning_conditions_met_return, '')
+    self.assertEquals(self.board.is_tie_condition_met_called, True)
+    self.assertEquals(self.board.is_tie_condition_met_return, True)
     self.assertEquals(self.view.display_tie_message_called, True)
     self.assertEquals(self.view.display_winning_message_called, False)
     self.assertEquals(self.view.display_winning_message_called_with, '')
@@ -52,7 +55,8 @@ class TestTTTGame(unittest.TestCase):
 
   def test_play_game_win(self):
     self.players[0].move_generator.stub_select_space_return('1')
-    self.board.stub_winning_conditions_met(True)
+    self.board.stub_is_winning_conditions_met(True)
+    self.board.stub_is_tie_condition_met(False)
     self.game.play_game()
     
     self.assertEquals(self.view.print_board_called, True)
@@ -63,8 +67,10 @@ class TestTTTGame(unittest.TestCase):
     self.assertEquals(self.board.place_piece_called_with, ['X', 1])
     self.assertEquals(self.board.format_board_to_string_called, True)
     self.assertEquals(self.board.format_board_to_string_called_with, self.board.active_board)
-    self.assertEquals(self.board.winning_conditions_met_called, True)
-    self.assertEquals(self.board.winning_conditions_met_return, True)
+    self.assertEquals(self.board.is_winning_conditions_met_called, True)
+    self.assertEquals(self.board.is_winning_conditions_met_return, True)
+    self.assertEquals(self.board.is_tie_condition_met_called, True)
+    self.assertEquals(self.board.is_tie_condition_met_return, False)
     self.assertEquals(self.view.display_tie_message_called, False)
     self.assertEquals(self.view.display_winning_message_called, True)
     self.assertEquals(self.view.display_winning_message_called_with, 'Player 1')
