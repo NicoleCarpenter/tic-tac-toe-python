@@ -18,7 +18,7 @@ if __name__ == '__main__':
   view = View(io, move_validator, selection_validator, input_validator)
   
   human_move_generator = HumanMoveGenerator(view)
-  computer_move_generator = ComputerMoveGenerator(move_validator, view)
+  computer_move_generator = ComputerMoveGenerator(view)
   player_builder = PlayerBuilder(human_move_generator, computer_move_generator)
   
   tttsetup = TTTSetup(view, player_builder)

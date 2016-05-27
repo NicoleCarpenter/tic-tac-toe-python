@@ -23,19 +23,19 @@ class TTTGame(object):
     self.view.print_board(self.board_positions)
     self.view.print_board(self.board.format_board_to_string(self.board.active_board))
     self.view.prompt_player_move(player.name)
-    move = player.move_generator.select_space(self.board.board_size, self.board.active_board)
+    move = player.move_generator.select_space(self.board, player.marker)
     self.board.place_piece(player.marker, int(move))
     self.__is_winner(player)
     self.__is_tie()
     self.view.clear_screen()
 
   def __is_winner(self, player):
-    if self.board.winning_conditions_met(player):
+    if self.board.is_winning_conditions_met():
       self.winner = player
       self.game_over = True
 
   def __is_tie(self):
-    if not '  ' in self.board.active_board:
+    if self.board.is_tie_condition_met():
       self.game_over = True
 
   def __display_results(self):

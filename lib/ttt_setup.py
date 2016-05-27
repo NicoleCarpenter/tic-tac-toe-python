@@ -43,7 +43,7 @@ class TTTSetup(object):
     return self.view.get_numbered_option_selection(options)
     
   def __get_player_order_selection(self, players):
-    prompt = 'Please select which player will go first'
+    prompt = '\nPlease select which player will go first'
     options = ['1 - {0}'.format(players[0].name), '2 - {0}'.format(players[1].name)]
     self.view.prompt_numbered_options(options, prompt)
     return self.view.get_numbered_option_selection(options)

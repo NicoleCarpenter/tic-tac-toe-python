@@ -14,14 +14,19 @@ class TestTTTMoveValidator(unittest.TestCase):
   def test_validate_move(self):
     move = '1'
     self.assertEquals(self.is_valid_return('1'), True)
+
+  def test_validate_move_fail_number(self):
     self.assertEquals(self.is_valid_return('0'), False)
     self.assertEquals(self.is_valid_return('-1'), False)
     self.assertEquals(self.is_valid_return('1.5'), False)
     self.assertEquals(self.is_valid_return('10'), False)
+
+  def test_validate_move_fail_char(self):
     self.assertEquals(self.is_valid_return('a'), False)
     self.assertEquals(self.is_valid_return('!'), False)
     self.assertEquals(self.is_valid_return(''), False)
     self.assertEquals(self.is_valid_return(' '), False)
     
-    self.active_board = [' X', '  ', '  ''  ', '  ', '  ', '  ', '  ']
+  def test_validate_move_fail_space_taken(self):
+    self.active_board = ['X','  ','  ','  ','  ','  ','  ','  ','  ']
     self.assertEquals(self.is_valid_return('1'), False)
