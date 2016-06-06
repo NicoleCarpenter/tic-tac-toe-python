@@ -1,7 +1,7 @@
-from lib.system_io import IO
-from lib.move_validator import TTTMoveValidator
+from lib.io import IO
+from lib.move_validator import MoveValidator
 from lib.selection_validator import SelectionValidator
-from lib.input_validator import InputValidator
+from lib.string_validator import StringValidator
 from lib.view import View
 from lib.human_move_generator import HumanMoveGenerator
 from lib.computer_move_generator import ComputerMoveGenerator
@@ -12,10 +12,10 @@ from lib.ttt.ttt_board import TTTBoard
 
 if __name__ == '__main__':
   io = IO()
-  move_validator = TTTMoveValidator()
-  input_validator = InputValidator()
+  move_validator = MoveValidator()
+  string_validator = StringValidator()
   selection_validator = SelectionValidator()
-  view = View(io, move_validator, selection_validator, input_validator)
+  view = View(io, move_validator, selection_validator, string_validator)
   
   human_move_generator = HumanMoveGenerator(view)
   computer_move_generator = ComputerMoveGenerator(view)

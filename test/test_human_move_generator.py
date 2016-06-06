@@ -13,5 +13,5 @@ class TestHumanMoveGenerator(unittest.TestCase):
     board_size = 9
     board = TTTBoard(board_size)
     self.view.stub_get_player_move('5')
-    move = self.move_generator.select_space(board)
+    move = self.move_generator.select_space(board, 'X')
     self.assertEquals(move, '5')

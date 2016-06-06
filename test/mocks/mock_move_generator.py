@@ -1,5 +1,4 @@
 import abc
-import random
 from lib.move_generator import MoveGenerator
 
 class MockMoveGenerator(MoveGenerator):

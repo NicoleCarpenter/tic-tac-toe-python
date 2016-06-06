@@ -16,7 +16,7 @@ class TTTSetup(object):
 
   def __assign_play_mode(self):
     prompt = 'Please select your method of play'
-    options = ['1 - Player vs Player', '2 - Player vs Computer']
+    options = ('1 - Player vs Player', '2 - Player vs Computer')
     self.view.prompt_numbered_options(options, prompt)
     return self.view.get_numbered_option_selection(options)
 
@@ -43,7 +43,7 @@ class TTTSetup(object):
 
   def __get_player_marker_selection(self, players):
     prompt = '\n{0}, do you want to play with X or O?'.format(players[0])
-    options = ['1 - X', '2 - O']
+    options = ('1 - X', '2 - O')
     self.view.prompt_numbered_options(options, prompt)
     return self.view.get_numbered_option_selection(options)
 
@@ -64,13 +64,13 @@ class TTTSetup(object):
 
   def __get_player_selection_type(self):
     prompt = '\nDo you want to select who goes first, or have a coin flip determine the order randomly?'
-    options = ['1 - Select order', '2 - Randomly assigned order']
+    options = ('1 - Select order', '2 - Randomly assigned order')
     self.view.prompt_numbered_options(options, prompt)
     return self.view.get_numbered_option_selection(options)
     
   def __get_player_order_selection(self, players):
     prompt = '\nPlease select which player will go first'
-    options = ['1 - {0}'.format(players[0].name), '2 - {0}'.format(players[1].name)]
+    options = ('1 - {0}'.format(players[0].name), '2 - {0}'.format(players[1].name))
     self.view.prompt_numbered_options(options, prompt)
     return self.view.get_numbered_option_selection(options)
 
