@@ -35,9 +35,11 @@ class TestComputerMoveGenerator(unittest.TestCase):
     self.assertEquals(self.view.display_computer_thinking_called, True)
     self.assertTrue(move >= 1, move <= 9)
 
+  @unittest.skip('long test run time')
   def test_select_space_unbeatable_first_move(self):
     self.play_all_games(self.board, 'O')
 
+  @unittest.skip('long test run time')
   def test_select_space_unbeatable_second_move(self):
     self.play_all_games(self.board, 'X')
 

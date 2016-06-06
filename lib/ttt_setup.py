@@ -9,10 +9,10 @@ class TTTSetup(object):
   def setup_game_players(self):
     self.view.clear_screen()
     play_mode = self.__assign_play_mode()
-    named_players = self.__assign_player_names(play_mode)
-    ordered_and_named_players = self.__assign_player_order(named_players)
-    self.view.display_player_order(ordered_and_named_players[0].name)
-    return ordered_and_named_players
+    players = self.__create_players(play_mode)
+    ordered_players = self.__assign_player_order(players)
+    self.view.display_player_order(ordered_players[0].name)
+    return ordered_players
 
   def __assign_play_mode(self):
     prompt = 'Please select your method of play'
@@ -20,13 +20,42 @@ class TTTSetup(object):
     self.view.prompt_numbered_options(options, prompt)
     return self.view.get_numbered_option_selection(options)
 
-  def __assign_player_names(self, play_mode):
-    players = [self.player_builder.build_human_player(self.view.get_player_name('First'), 'X')]
-    if play_mode == '1':
-      players.append(self.player_builder.build_human_player(self.view.get_player_name('Second'), 'O'))
-    else:
-      players.append(self.player_builder.build_computer_player('Computer', 'O'))
+  def __create_players(self, play_mode):
+    players = []
+    player_names = self.__assign_player_names(play_mode)
+    markers = self.__assign_player_markers(player_names)
+    player_attribute_sets = zip(player_names, markers)
+    for attribute_set in player_attribute_sets:
+      if attribute_set[0] != 'Computer':
+        players.append(self.player_builder.build_human_player(attribute_set[0], attribute_set[1]))
+      else:
+        players.append(self.player_builder.build_computer_player(attribute_set[0], attribute_set[1]))
     return players
+
+  def __assign_player_names(self, play_mode):
+    player_names = [self.view.get_player_name('First')]
+    if play_mode == '1':
+      player_names.append(self.view.get_player_name('Second'))
+    else:
+      player_names.append('Computer')
+    return player_names
+
+  def __assign_player_markers(self, players):
+    player_selection = self.__get_player_marker_selection(players)
+    return self.__assign_player_markers_by_selection(player_selection)
+
+  def __get_player_marker_selection(self, players):
+    prompt = '\n{0}, do you want to play with X or O?'.format(players[0])
+    options = ['1 - X', '2 - O']
+    self.view.prompt_numbered_options(options, prompt)
+    return self.view.get_numbered_option_selection(options)
+
+  def __assign_player_markers_by_selection(self, player_selection):
+    markers = ['X', 'O']
+    if player_selection == '1':
+      return markers
+    else:
+      return markers[::-1]
 
   def __assign_player_order(self, players):
     selection_type = self.__get_player_selection_type()
