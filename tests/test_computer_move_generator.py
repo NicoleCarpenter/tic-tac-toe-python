@@ -1,6 +1,6 @@
 import unittest
 import copy
-from mocks.mock_view import MockView
+from tests.mocks.mock_view import MockView
 from lib.ttt.ttt_board import TTTBoard
 from lib.computer_move_generator import ComputerMoveGenerator
 
@@ -10,9 +10,6 @@ class TestComputerMoveGenerator(unittest.TestCase):
     self.view = MockView()
     self.move_generator = ComputerMoveGenerator(self.view)
     self.board = TTTBoard(9)
-
-  def test_view(self):
-    self.assertEquals(self.move_generator.view, self.view)
 
   def test_select_space_tie(self): 
     self.board.active_board = ['X','O','O','X','X','O','O','X','  ']
