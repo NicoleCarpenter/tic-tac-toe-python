@@ -1,14 +1,14 @@
-from lib.io import IO
-from lib.ttt_move_validator import TTTMoveValidator
-from lib.selection_validator import SelectionValidator
-from lib.input_validator import InputValidator
-from lib.view import View
-from lib.human_move_generator import HumanMoveGenerator
-from lib.computer_move_generator import ComputerMoveGenerator
-from lib.player_builder import PlayerBuilder
-from lib.ttt_setup import TTTSetup
-from lib.ttt_game import TTTGame
-from lib.ttt_board import TTTBoard
+from lib.system_io import IO
+from lib.validators.move_validator import TTTMoveValidator
+from lib.validators.selection_validator import SelectionValidator
+from lib.validators.input_validator import InputValidator
+from lib.view.view import View
+from lib.move_generators.human_move_generator import HumanMoveGenerator
+from lib.move_generatprs.computer_move_generator import ComputerMoveGenerator
+from lib.players.player_builder import PlayerBuilder
+from lib.ttt.ttt_setup import TTTSetup
+from lib.ttt.ttt_game import TTTGame
+from lib.ttt.ttt_board import TTTBoard
 
 if __name__ == '__main__':
   io = IO()
