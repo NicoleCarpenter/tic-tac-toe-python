@@ -1,6 +1,6 @@
 import unittest
 import copy
-from tests.mocks.mock_view import MockView
+from test.mocks.mock_view import MockView
 from lib.ttt.ttt_board import TTTBoard
 from lib.computer_move_generator import ComputerMoveGenerator
 

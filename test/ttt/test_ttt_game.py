@@ -1,7 +1,7 @@
 import unittest
-from tests.mocks.mock_view import MockView
-from tests.mocks.mock_ttt_board import MockTTTBoard
-from tests.mocks.mock_move_generator import MockMoveGenerator
+from test.mocks.mock_view import MockView
+from test.mocks.mock_ttt_board import MockTTTBoard
+from test.mocks.mock_move_generator import MockMoveGenerator
 from lib.player import Player
 from lib.ttt.ttt_game import TTTGame
 

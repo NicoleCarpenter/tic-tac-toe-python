@@ -1,8 +1,9 @@
 import unittest
-from mocks.mock_io import MockIO
+from test.mocks.mock_io import MockIO
 from lib.move_validator import MoveValidator
 from lib.selection_validator import SelectionValidator
 from lib.string_validator import StringValidator
+from lib.ttt.ttt_board import TTTBoard
 from lib.view import View
 class TestView(unittest.TestCase):
 
@@ -56,9 +57,10 @@ class TestView(unittest.TestCase):
 
   def test_get_player_move(self):
     self.io.stub_user_input('2')
-    active_board = ['  '] * 9
     board_size = 9
-    self.assertEquals(self.view.get_player_move(board_size, active_board), '2')
+    board = TTTBoard(board_size)
+
+    self.assertEquals(self.view.get_player_move(board), '2')
     self.assertEquals(self.io.get_user_input_called, True)
     self.assertEquals(self.io.get_user_input_called_with, '')
 

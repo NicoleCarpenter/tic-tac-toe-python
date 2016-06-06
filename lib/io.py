@@ -20,5 +20,5 @@ class IO(Interactable):
   def clear(self):
     os.system('cls' if os.name == 'nt' else 'clear')
 
-  def __sleep(self, seconds=1):
+  def __sleep(self, seconds):
     time.sleep(seconds)

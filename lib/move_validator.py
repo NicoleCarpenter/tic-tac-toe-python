@@ -3,8 +3,8 @@ from lib.input_validator import InputValidator
 
 class MoveValidator(InputValidator):
 
-  def is_valid(self, move, board_size, active_board):
-    return self.__is_valid_number(move) and self.__is_valid_space(board_size, move) and self.__is_open_space(active_board, move)
+  def is_valid(self, move, board):
+    return self.__is_valid_number(move) and self.__is_valid_space(board.board_size, move) and self.__is_open_space(board.active_board, move)
 
   def __is_valid_space(self, board_size, move):
     return int(move) > 0 and int(move) <= board_size

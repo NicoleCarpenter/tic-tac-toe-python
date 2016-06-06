@@ -1,15 +1,16 @@
 import unittest
+from lib.ttt.ttt_board import TTTBoard
 from lib.move_validator import MoveValidator
 
 class TestMoveValidator(unittest.TestCase):
 
   def setUp(self):
     self.validator = MoveValidator()
-    self.board_size = 9
-    self.active_board = ['  '] * self.board_size
+    board_size = 9
+    self.board = TTTBoard(board_size)
 
   def is_valid_return(self, move):
-    return self.validator.is_valid(move, self.board_size, self.active_board)
+    return self.validator.is_valid(move, self.board)
 
   def test_validate_move(self):
     move = '1'
@@ -28,5 +29,5 @@ class TestMoveValidator(unittest.TestCase):
     self.assertEquals(self.is_valid_return(' '), False)
     
   def test_validate_move_fail_space_taken(self):
-    self.active_board = ['X','  ','  ','  ','  ','  ','  ','  ','  ']
+    self.board.active_board = ['X','  ','  ','  ','  ','  ','  ','  ','  ']
     self.assertEquals(self.is_valid_return('1'), False)
