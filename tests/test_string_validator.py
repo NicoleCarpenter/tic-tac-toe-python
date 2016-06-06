@@ -1,5 +1,5 @@
 import unittest
-from lib.validators.string_validator import StringValidator
+from lib.string_validator import StringValidator
 
 class TestStringValidator(unittest.TestCase):
 

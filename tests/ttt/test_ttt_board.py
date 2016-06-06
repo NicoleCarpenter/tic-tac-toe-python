@@ -1,5 +1,4 @@
 import unittest
-from mocks.mock_move_generator import MockMoveGenerator
 from lib.ttt.ttt_board import TTTBoard
 
 class TestTTTBoard(unittest.TestCase):

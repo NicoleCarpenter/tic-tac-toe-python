@@ -1,5 +1,5 @@
 import abc
-from lib.validators.input_validator import InputValidator
+from lib.input_validator import InputValidator
 
 class StringValidator(InputValidator):
 

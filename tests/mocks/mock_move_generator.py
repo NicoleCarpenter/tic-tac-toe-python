@@ -1,6 +1,6 @@
 import abc
 import random
-from lib.move_generators.move_generator import MoveGenerator
+from lib.move_generator import MoveGenerator
 
 class MockMoveGenerator(MoveGenerator):
 
