@@ -1,5 +1,5 @@
 import unittest
-from lib.validators.move_validator import MoveValidator
+from lib.move_validator import MoveValidator
 
 class TestMoveValidator(unittest.TestCase):
 

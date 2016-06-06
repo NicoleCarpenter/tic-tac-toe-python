@@ -1,5 +1,5 @@
 import abc
-from lib.view.viewable import Viewable
+from lib.viewable import Viewable
 
 class MockView(Viewable):
 

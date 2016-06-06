@@ -1,9 +1,9 @@
 import unittest
-from mocks.mock_view import MockView
-from lib.players.player_builder import PlayerBuilder
-from lib.move_generators.human_move_generator import HumanMoveGenerator
-from lib.move_generators.computer_move_generator import ComputerMoveGenerator
-from lib.validators.move_validator import MoveValidator
+from tests.mocks.mock_view import MockView
+from lib.player_builder import PlayerBuilder
+from lib.human_move_generator import HumanMoveGenerator
+from lib.computer_move_generator import ComputerMoveGenerator
+from lib.move_validator import MoveValidator
 from lib.ttt.ttt_setup import TTTSetup
 
 class TestTTTSetup(unittest.TestCase):

@@ -1,5 +1,5 @@
 import abc
-from lib.boards.board import Board
+from lib.board import Board
 
 class MockTTTBoard(Board):
 

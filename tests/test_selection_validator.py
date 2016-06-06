@@ -1,5 +1,5 @@
 import unittest
-from lib.validators.selection_validator import SelectionValidator
+from lib.selection_validator import SelectionValidator
 
 class TestSelectionValidator(unittest.TestCase):
 

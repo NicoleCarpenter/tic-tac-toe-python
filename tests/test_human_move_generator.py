@@ -1,7 +1,7 @@
 import unittest
 from mocks.mock_view import MockView
 from lib.ttt.ttt_board import TTTBoard
-from lib.move_generators.human_move_generator import HumanMoveGenerator
+from lib.human_move_generator import HumanMoveGenerator
 
 class TestHumanMoveGenerator(unittest.TestCase):
 

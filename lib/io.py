@@ -2,7 +2,7 @@ import os
 import time
 import sys
 import abc
-from lib.system_io.interactable import Interactable
+from lib.interactable import Interactable
 
 class IO(Interactable):
 

@@ -1,7 +1,7 @@
 import abc
 import itertools
 import math
-from lib.boards.board import Board
+from lib.board import Board
 
 class TTTBoard(Board):
 

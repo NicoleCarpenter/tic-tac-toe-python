@@ -1,9 +1,9 @@
 import unittest
 from mocks.mock_io import MockIO
-from lib.validators.move_validator import MoveValidator
-from lib.validators.selection_validator import SelectionValidator
-from lib.validators.string_validator import StringValidator
-from lib.view.view import View
+from lib.move_validator import MoveValidator
+from lib.selection_validator import SelectionValidator
+from lib.string_validator import StringValidator
+from lib.view import View
 
 class TestView(unittest.TestCase):
 

@@ -1,4 +1,4 @@
-from lib.players.player import Player
+from lib.player import Player
 
 class PlayerBuilder(object):
 
