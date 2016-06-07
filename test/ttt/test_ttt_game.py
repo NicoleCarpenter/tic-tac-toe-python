@@ -1,7 +1,7 @@
 import unittest
-from tests.mocks.mock_view import MockView
-from tests.mocks.mock_ttt_board import MockTTTBoard
-from tests.mocks.mock_move_generator import MockMoveGenerator
+from test.mocks.mock_view import MockView
+from test.mocks.mock_ttt_board import MockTTTBoard
+from test.mocks.mock_move_generator import MockMoveGenerator
 from lib.player import Player
 from lib.ttt.ttt_game import TTTGame
 
@@ -18,15 +18,6 @@ class TestTTTGame(unittest.TestCase):
 
   def tearDown(self):
     del self.game
-
-  def test_view(self):
-    self.assertEquals(self.game.view, self.view)
-
-  def test_board(self):
-    self.assertEquals(self.game.board, self.board)
-
-  def test_players(self):
-    self.assertEquals(self.game.players, self.players)
 
   def test_play_game_tie(self):
     self.players[0].move_generator.stub_select_space_return('1')

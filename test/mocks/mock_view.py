@@ -59,9 +59,9 @@ class MockView(Viewable):
     self.prompt_player_move_called = True
     self.prompt_player_move_called_with = player_name
 
-  def get_player_move(self, board_size, active_board):
+  def get_player_move(self, board):
     self.get_player_move_called = True
-    self.get_player_move_called_with = [board_size, active_board]
+    self.get_player_move_called_with = [board]
     return self.player_move_return
 
   def stub_get_player_move(self, player_move_return):

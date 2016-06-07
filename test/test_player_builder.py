@@ -1,5 +1,5 @@
 import unittest
-from mocks.mock_view import MockView
+from test.mocks.mock_view import MockView
 from lib.human_move_generator import HumanMoveGenerator
 from lib.computer_move_generator import ComputerMoveGenerator
 from lib.player_builder import PlayerBuilder

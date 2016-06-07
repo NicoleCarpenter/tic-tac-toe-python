@@ -2,9 +2,8 @@ import abc
 
 class Board(object):
 
-  def __init__(self, board_size):
+  def __init__(self):
     __metaclass__ = abc.ABCMeta
-    self.board_size = board_size
 
   @abc.abstractmethod
   def format_board_to_string(self, board):
