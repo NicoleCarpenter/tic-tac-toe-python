@@ -3,11 +3,12 @@ from lib.viewable import Viewable
 
 class View(Viewable):
 
-  def __init__(self, io, move_validator, selection_validator, string_validator):
+  def __init__(self, io, move_validator, selection_validator, string_validator, board_presenter):
     self.io = io
     self.move_validator = move_validator
     self.selection_validator = selection_validator
     self.string_validator = string_validator
+    self.board_presenter = board_presenter
 
   def prompt_numbered_options(self, options, prompt='Please make a selection'):
     self.io.display(prompt)
@@ -47,7 +48,11 @@ class View(Viewable):
     return move
 
   def print_board(self, board):
-    self.io.display(board)
+    if all(isinstance(item, int) for item in board):
+      formatted_board_positions = self.board_presenter.find_printable_board_positions(board)
+      self.io.display(self.board_presenter.format_board_to_string(formatted_board_positions)) 
+    else:
+      self.io.display(self.board_presenter.format_board_to_string(board))
 
   def display_computer_thinking(self):
     self.io.display('\nThe computer is thinking')
