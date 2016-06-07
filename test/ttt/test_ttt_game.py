@@ -23,6 +23,7 @@ class TestTTTGame(unittest.TestCase):
     self.players[0].move_generator.stub_select_space_return('1')
     self.board.active_board = [' X'] * 9
     self.board.stub_is_tie_condition_met(True)
+    self.board.stub_board_positions([1,2,3,4,5,6,7,8,9])
     self.game.play_game()
 
     self.assertEquals(self.view.print_board_called, True)
@@ -31,8 +32,6 @@ class TestTTTGame(unittest.TestCase):
     self.assertEquals(self.move_generator.select_space_called, True)
     self.assertEquals(self.board.place_piece_called, True)
     self.assertEquals(self.board.place_piece_called_with, ['X', 1])
-    self.assertEquals(self.board.format_board_to_string_called, True)
-    self.assertEquals(self.board.format_board_to_string_called_with, self.board.active_board)
     self.assertEquals(self.board.is_winning_conditions_met_called, True)
     self.assertEquals(self.board.is_winning_conditions_met_return, '')
     self.assertEquals(self.board.is_tie_condition_met_called, True)
@@ -56,8 +55,6 @@ class TestTTTGame(unittest.TestCase):
     self.assertEquals(self.move_generator.select_space_called, True)
     self.assertEquals(self.board.place_piece_called, True)
     self.assertEquals(self.board.place_piece_called_with, ['X', 1])
-    self.assertEquals(self.board.format_board_to_string_called, True)
-    self.assertEquals(self.board.format_board_to_string_called_with, self.board.active_board)
     self.assertEquals(self.board.is_winning_conditions_met_called, True)
     self.assertEquals(self.board.is_winning_conditions_met_return, True)
     self.assertEquals(self.board.is_tie_condition_met_called, True)

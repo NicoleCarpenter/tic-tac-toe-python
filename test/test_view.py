@@ -3,8 +3,10 @@ from test.mocks.mock_io import MockIO
 from lib.move_validator import MoveValidator
 from lib.selection_validator import SelectionValidator
 from lib.string_validator import StringValidator
+from lib.ttt.ttt_board_presenter import TTTBoardPresenter
 from lib.ttt.ttt_board import TTTBoard
 from lib.view import View
+
 class TestView(unittest.TestCase):
 
   def setUp(self):
@@ -12,7 +14,8 @@ class TestView(unittest.TestCase):
     self.move_validator = MoveValidator()
     self.selection_validator = SelectionValidator()
     self.string_validator = StringValidator()
-    self.view = View(self.io, self.move_validator, self.selection_validator, self.string_validator)
+    self.board_presenter = TTTBoardPresenter()
+    self.view = View(self.io, self.move_validator, self.selection_validator, self.string_validator, self.board_presenter)
 
   def tearDown(self):
     del self.io
@@ -64,11 +67,17 @@ class TestView(unittest.TestCase):
     self.assertEquals(self.io.get_user_input_called, True)
     self.assertEquals(self.io.get_user_input_called_with, '')
 
-  def test_print_board(self):
+  def test_print_board_positions(self):
     board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     self.view.print_board(board)
     self.assertEquals(self.io.display_called, True)
-    self.assertEquals(self.io.display_called_with, board)
+    self.assertEquals(self.io.display_called_with, ' 1 | 2 | 3\n===+===+===\n 4 | 5 | 6\n===+===+===\n 7 | 8 | 9\n')
+
+  def test_print_board_active_board(self):
+    board = ['  '] * 9
+    self.view.print_board(board)
+    self.assertEquals(self.io.display_called, True)
+    self.assertEquals(self.io.display_called_with, '   |   |  \n===+===+===\n   |   |  \n===+===+===\n   |   |  \n')
 
   def test_display_computer_thinking(self):
     self.view.display_computer_thinking()

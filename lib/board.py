@@ -6,9 +6,9 @@ class Board(object):
     __metaclass__ = abc.ABCMeta
 
   @abc.abstractmethod
-  def format_board_to_string(self, board):
-    pass
+  def place_piece(self, marker, space):
+    self.active_board[space-1] = marker
 
   @abc.abstractmethod
-  def place_piece(self, marker, space):
-    pass
+  def find_open_spaces(self, board):
+    return [i for i, x in enumerate(board) if x == '  ']

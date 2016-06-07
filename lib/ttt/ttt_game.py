@@ -4,7 +4,6 @@ class TTTGame(object):
     self.view = view
     self.board = board
     self.players = players
-    self.board_positions = self.board.format_board_to_string(self.board.find_printable_board_positions())
     self.game_over = False
     self.winner = False
 
@@ -20,8 +19,8 @@ class TTTGame(object):
       self.__player_turn(player)
 
   def __player_turn(self, player):
-    self.view.print_board(self.board_positions)
-    self.view.print_board(self.board.format_board_to_string(self.board.active_board))
+    self.view.print_board(self.board.board_positions)
+    self.view.print_board(self.board.active_board)
     self.view.prompt_player_move(player.name)
     move = player.move_generator.select_space(self.board, player.marker)
     self.board.place_piece(player.marker, int(move))
@@ -39,8 +38,8 @@ class TTTGame(object):
       self.game_over = True
 
   def __display_results(self):
-    self.view.print_board(self.board_positions)
-    self.view.print_board(self.board.format_board_to_string(self.board.active_board))
+    self.view.print_board(self.board.board_positions)
+    self.view.print_board(self.board.active_board)
     if self.winner:
       self.view.display_winning_message(self.winner.name)
     else:

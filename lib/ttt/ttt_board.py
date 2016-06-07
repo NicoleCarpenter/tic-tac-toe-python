@@ -1,5 +1,4 @@
 import abc
-import itertools
 import math
 from lib.board import Board
 
@@ -10,22 +9,11 @@ class TTTBoard(Board):
     self.active_board = ['  '] * self.board_size
     self.board_positions = self.__find_board_postions()
 
-  def format_board_to_string(self, board):
-    formatted_board = self.__add_leading_spaces(board)
-    formatted_rows = []
-    number_of_rows = self.__find_number_of_rows()
-    rows = self.__separate_rows(formatted_board)
-    for index, row in enumerate(rows):
-      formatted_rows.append(self.__format_row(row, number_of_rows))
-      self.__add_horizontal_fillers_if_between_rows(index, formatted_rows, number_of_rows)
-    converted_string = self.__convert_board_list_to_string(formatted_rows)
-    return converted_string
-
-  def find_printable_board_positions(self):
-    return map('{:1}'.format, self.board_positions)
-
   def place_piece(self, marker, space):
-    self.active_board[space-1] = marker
+    super(TTTBoard, self).place_piece(marker, space)
+
+  def find_open_spaces(self):
+    return super(TTTBoard, self).find_open_spaces(self.active_board)
 
   def is_tie_condition_met(self):
     return not '  ' in self.active_board
@@ -45,14 +33,8 @@ class TTTBoard(Board):
       if self.__has_unique_values(values_at_combo_positions) and values_at_combo_positions[0] != '  ':
         return values_at_combo_positions[0]
 
-  def find_open_spaces(self):
-    return [i for i, x in enumerate(self.active_board) if x == '  ']
-
   def __find_board_postions(self):
     return range(1,self.board_size+1)
-
-  def __add_leading_spaces(self, board):
-    return [' ' + x if x!='  ' else x for x in board]
 
   def __find_number_of_rows(self):
     return int(math.sqrt(self.board_size))
@@ -92,35 +74,3 @@ class TTTBoard(Board):
 
   def __has_unique_values(self, values):
     return values[1:] == values[:-1]
-
-  def __format_row(self, row, number_of_rows):
-    vertical_fillers = self.__construct_vertical_fillers(number_of_rows)
-    filled_row = self.__construct_filled_row(row, vertical_fillers)
-    flattened_row = self.__flatten_row(filled_row)
-    formatted_with_newline = self.__append_row_with_newline(flattened_row)
-    return formatted_with_newline
-
-  def __construct_vertical_fillers(self, number_of_rows):
-    return [' |'] * (number_of_rows - 1)
-
-  def __construct_filled_row(self, row, row_fillers):
-    return map(list, itertools.izip_longest(row, row_fillers))
-
-  def __flatten_row(self, filled_row):
-    return sum(filled_row, [])
-
-  def __append_row_with_newline(self, flattened_row):
-    return ['\n' if x==None else x for x in flattened_row]
-
-  def __add_horizontal_fillers_if_between_rows(self, index, formatted_rows, number_of_rows):
-    if index != number_of_rows - 1:
-      formatted_rows = self.__add_horizontal_fillers(formatted_rows, number_of_rows)
-    return formatted_rows
-
-  def __add_horizontal_fillers(self, formatted_rows, number_of_rows):
-    formatted_rows.append('===' + ('+===' * (number_of_rows - 1)))
-    formatted_rows.append(['\n'])
-    return formatted_rows
-
-  def __convert_board_list_to_string(self, formatted_rows):
-     return ''.join([item for sublist in formatted_rows for item in sublist])
