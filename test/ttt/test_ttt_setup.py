@@ -1,4 +1,5 @@
 import unittest
+import config
 from test.mocks.mock_view import MockView
 from lib.player_builder import PlayerBuilder
 from lib.human_move_generator import HumanMoveGenerator
@@ -24,6 +25,9 @@ class TestTTTSetup(unittest.TestCase):
     self.second_player = '2'
     self.setup = TTTSetup(self.view, player_builder)
 
+  def tearDown(self):
+    del self.setup
+
   def test_setup_game_players_pvc_X_first(self):
     setup_options = [self.player_vs_computer, self.select_X, self.select_order, self.first_player]
     self.view.stub_numbered_option_selection(setup_options)
@@ -42,7 +46,6 @@ class TestTTTSetup(unittest.TestCase):
     self.assertEquals(self.view.display_coin_flip_called, False)
     self.assertEquals(self.view.display_player_order_called, True)
     self.assertEquals(self.view.display_player_order_called_with, players[0].name)
-    self.assertEquals(players[0].marker, 'X')
 
   def test_setup_game_players_pvc_O_first(self):
     setup_options = [self.player_vs_computer, self.select_O, self.select_order, self.first_player]
@@ -62,7 +65,6 @@ class TestTTTSetup(unittest.TestCase):
     self.assertEquals(self.view.display_coin_flip_called, False)
     self.assertEquals(self.view.display_player_order_called, True)
     self.assertEquals(self.view.display_player_order_called_with, players[0].name)
-    self.assertEquals(players[0].marker, 'O')
 
   def test_setup_game_players_pvc_X_second(self):
     setup_options = [self.player_vs_computer, self.select_X, self.select_order, self.second_player]
@@ -82,7 +84,6 @@ class TestTTTSetup(unittest.TestCase):
     self.assertEquals(self.view.display_coin_flip_called, False)
     self.assertEquals(self.view.display_player_order_called, True)
     self.assertEquals(self.view.display_player_order_called_with, players[0].name)
-    self.assertEquals(players[0].marker, 'O')
 
   def test_setup_game_players_pvc_O_second(self):
     setup_options = [self.player_vs_computer, self.select_O, self.select_order, self.second_player]
@@ -102,7 +103,6 @@ class TestTTTSetup(unittest.TestCase):
     self.assertEquals(self.view.display_coin_flip_called, False)
     self.assertEquals(self.view.display_player_order_called, True)
     self.assertEquals(self.view.display_player_order_called_with, players[0].name)
-    self.assertEquals(players[0].marker, 'X')
 
   def test_setup_game_players_pvc_X_random(self):
     setup_options = [self.player_vs_computer, self.select_X, self.random_order]
@@ -152,7 +152,6 @@ class TestTTTSetup(unittest.TestCase):
     self.assertEquals(self.view.display_coin_flip_called, False)
     self.assertEquals(self.view.display_player_order_called, True)
     self.assertEquals(self.view.display_player_order_called_with, players[0].name)
-    self.assertEquals(players[0].marker, 'X')
 
   def test_setup_game_players_pvp_O_first(self):
     setup_options = [self.player_vs_player, self.select_O, self.select_order, self.first_player]
@@ -172,7 +171,6 @@ class TestTTTSetup(unittest.TestCase):
     self.assertEquals(self.view.display_coin_flip_called, False)
     self.assertEquals(self.view.display_player_order_called, True)
     self.assertEquals(self.view.display_player_order_called_with, players[0].name)
-    self.assertEquals(players[0].marker, 'O')
 
   def test_setup_game_players_pvp_X_second(self):
     setup_options = [self.player_vs_player, self.select_X, self.select_order, self.second_player]
@@ -192,7 +190,6 @@ class TestTTTSetup(unittest.TestCase):
     self.assertEquals(self.view.display_coin_flip_called, False)
     self.assertEquals(self.view.display_player_order_called, True)
     self.assertEquals(self.view.display_player_order_called_with, players[0].name)
-    self.assertEquals(players[0].marker, 'O')
 
   def test_setup_game_players_pvp_O_second(self):
     setup_options = [self.player_vs_player, self.select_O, self.select_order, self.second_player]
@@ -212,7 +209,6 @@ class TestTTTSetup(unittest.TestCase):
     self.assertEquals(self.view.display_coin_flip_called, False)
     self.assertEquals(self.view.display_player_order_called, True)
     self.assertEquals(self.view.display_player_order_called_with, players[0].name)
-    self.assertEquals(players[0].marker, 'X')
 
   def test_setup_game_players_pvp_X_random(self):
     setup_options = [self.player_vs_player, self.select_X, self.random_order]

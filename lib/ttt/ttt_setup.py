@@ -1,4 +1,5 @@
 import random
+import config
 
 class TTTSetup(object):
 
@@ -10,6 +11,7 @@ class TTTSetup(object):
     self.view.clear_screen()
     play_mode = self.__assign_play_mode()
     players = self.__create_players(play_mode)
+    self.__set_marker_constants(players)
     ordered_players = self.__assign_player_order(players)
     self.view.display_player_order(ordered_players[0].name)
     return ordered_players
@@ -42,13 +44,13 @@ class TTTSetup(object):
     return self.__assign_player_markers_by_selection(player_selection)
 
   def __get_player_marker_selection(self, players):
-    prompt = '\n{0}, do you want to play with X or O?'.format(players[0])
-    options = ('1 - X', '2 - O')
+    prompt = '\n{0}, do you want to play with {1} or {2}?'.format(players[0], config.PLAYER_MARKER, config.OPPONENT_MARKER)
+    options = ('1 - {0}'.format(config.PLAYER_MARKER), '2 - {0}'.format(config.OPPONENT_MARKER))
     self.view.prompt_numbered_options(options, prompt)
     return self.view.get_numbered_option_selection(options)
 
   def __assign_player_markers_by_selection(self, player_selection):
-    markers = ['X', 'O']
+    markers = [config.PLAYER_MARKER, config.OPPONENT_MARKER]
     if player_selection == '1':
       return markers
     else:
@@ -84,3 +86,7 @@ class TTTSetup(object):
     random.shuffle(players)
     self.view.display_coin_flip()
     return players
+
+  def __set_marker_constants(self, players):
+    config.PLAYER_MARKER = players[0].marker
+    config.OPPONENT_MARKER = players[1].marker
