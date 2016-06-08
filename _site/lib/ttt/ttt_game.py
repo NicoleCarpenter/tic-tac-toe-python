@@ -26,14 +26,14 @@ class TTTGame(object):
     move = player.move_generator.select_space(self.board, player.marker)
     self.board.place_piece(player.marker, int(move))
 
-    self.__check_for_winner(player)
+    self.check_for_winner(player)
     self.game_over = self.__is_game_over()
     self.view.clear_screen()
 
   def __is_game_over(self):
     return self.__is_tie() or self.winner != None
 
-  def __check_for_winner(self, player):
+  def check_for_winner(self, player):
     if self.board.find_winning_marker() != None:
       self.winner = player
 
