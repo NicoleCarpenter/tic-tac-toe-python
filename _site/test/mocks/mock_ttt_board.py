@@ -14,9 +14,9 @@ class MockTTTBoard(Board):
     self.is_winning_conditions_met_called = False
     self.is_winning_conditions_met_return = ''
     self.is_tie_condition_met_called = False
-    self.is_tie_condition_met_return = False
+    self.is_tie_condition_met_return = ''
     self.find_winning_marker_called = False
-    self.find_winning_marker_return = None
+    self.find_winning_marker_return = ''
 
   def stub_active_board(self, board):
     self.active_board = board
