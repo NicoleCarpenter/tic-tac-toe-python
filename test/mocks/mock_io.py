@@ -31,6 +31,6 @@ class MockIO(Interactable):
     self.display_with_sleep_called = True
     self.sleep_called = True
     self.display_with_sleep_called_with = output
-    
+
   def clear(self):
     self.clear_called = True

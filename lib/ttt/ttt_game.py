@@ -23,7 +23,7 @@ class TTTGame(object):
     self.view.print_board(self.board.active_board)
 
     self.view.prompt_player_move(player.name)
-    move = player.move_generator.select_space(self.board, player.marker)
+    move = player.move_generator.select_space(self.board)
     self.board.place_piece(player.marker, int(move))
 
     self.__check_for_winner(player)

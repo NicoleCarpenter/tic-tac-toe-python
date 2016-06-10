@@ -27,7 +27,7 @@ class TestMoveValidator(unittest.TestCase):
     self.assertEquals(self.is_valid_return('!'), False)
     self.assertEquals(self.is_valid_return(''), False)
     self.assertEquals(self.is_valid_return(' '), False)
-    
+
   def test_validate_move_fail_space_taken(self):
     self.board.active_board = ['X','  ','  ','  ','  ','  ','  ','  ','  ']
     self.assertEquals(self.is_valid_return('1'), False)

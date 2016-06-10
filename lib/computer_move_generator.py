@@ -7,41 +7,54 @@ class ComputerMoveGenerator(MoveGenerator):
 
   def __init__(self, view):
     self.view = view
-    self.MAX_DEPTH = 7
     self.STARTING_DEPTH = 0
-    
-  def select_space(self, board, current_player_marker):
-    opponent_marker = self.__find_opponent_marker(current_player_marker)
-    self.view.display_computer_thinking()
-    return self.__negamax(board, current_player_marker, opponent_marker, self.STARTING_DEPTH, {})
+    self.MAX_DEPTH = 7
+    self.TIE_SCORE = 0
+    self.WINNING_SCORE = -10
+    self.computer_marker = config.OPPONENT_MARKER
+    self.opponent_marker = config.PLAYER_MARKER
 
-  def __negamax(self, board, player_marker, opponent_marker, depth, negamax_scores):
-    if depth >= self.MAX_DEPTH:
-      return 0
+  def select_space(self, board):
+    self.view.display_computer_thinking()
+    markers = {1: self.computer_marker, -1: self.opponent_marker}
+    return self.__negamax(board, markers, self.STARTING_DEPTH, 1, -float('inf'), float('inf'))
+
+  def __negamax(self, board, markers, depth, color, alpha, beta):
+    negamax_scores = {}
+    best_score = -float('inf')
+    best_move = -1
+
     if board.is_tie_condition_met() or board.find_winning_marker() != None:
-      return self.__score(board)
-        
+      return self.__score(board, depth)
+
     for space in board.find_open_spaces():
       temp_board = copy.deepcopy(board)
-      temp_board.place_piece(player_marker, space + 1)
-      negamax_scores[space] = -1 * self.__negamax(temp_board, opponent_marker, player_marker, depth + 1, {})
+      temp_board.place_piece(markers[color], space + 1)
+      score = -self.__negamax(temp_board, markers, depth + 1, -color, -beta, -alpha)
 
-    best_spot_index = max(negamax_scores, key=negamax_scores.get)
-    highest_negamax_value = negamax_scores[best_spot_index]
+      if best_score < score:
+        best_score = score
+        best_move = space
 
-    if depth != self.STARTING_DEPTH:
-      return highest_negamax_value
+      alpha = max(score, alpha)
+      if alpha >= beta:
+        break
+
+    if not self.__is_full_board_evaluated(depth):
+      return best_score
     else:
-      return best_spot_index + 1
+      return best_move + 1
 
-  def __score(self, board):
-    if board.find_winning_marker() == None:
-      return 0
+  def __score(self, board, depth):
+    if self.__is_max_node_depth(depth):
+      return self.TIE_SCORE
+    elif board.find_winning_marker() != None:
+      return self.WINNING_SCORE
     else:
-      return -10
+      return self.TIE_SCORE
 
-  def __find_opponent_marker(self, current_player_marker):
-    if current_player_marker == config.PLAYER_MARKER:
-      return config.OPPONENT_MARKER
-    else:
-      return config.PLAYER_MARKER
+  def __is_max_node_depth(self, depth):
+    return depth >= self.MAX_DEPTH
+
+  def __is_full_board_evaluated(self, depth):
+    return depth == self.STARTING_DEPTH

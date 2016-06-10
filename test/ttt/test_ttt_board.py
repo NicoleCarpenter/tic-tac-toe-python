@@ -21,7 +21,7 @@ class TestTTTBoard(unittest.TestCase):
     self.board.place_piece(marker, space)
     self.assertEqual(self.board.active_board[8], marker)
 
-  def test_is_tie_condition_met(self): 
+  def test_is_tie_condition_met(self):
     self.board.active_board = ['X','X','X','X','X','X','X','X','X']
     self.assertTrue(self.board.is_tie_condition_met())
 
@@ -81,17 +81,3 @@ class TestTTTBoard(unittest.TestCase):
 
     self.board.active_board = ['X','X','X','X','X','X','X','X','X']
     self.assertEquals(self.board.find_open_spaces(), [])
-
-
-
-
-
-
-
-
-
-
-
-
-
-

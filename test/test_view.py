@@ -99,7 +99,7 @@ class TestView(unittest.TestCase):
 
   def test_clear_screen(self):
     self.view.clear_screen()
-    self.assertEquals(self.io.clear_called, True)  
+    self.assertEquals(self.io.clear_called, True)
 
   def test_loading(self):
     self.view.loading(3, '. ')

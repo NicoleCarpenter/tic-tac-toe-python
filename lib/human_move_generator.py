@@ -6,5 +6,5 @@ class HumanMoveGenerator(MoveGenerator):
   def __init__(self, view):
     self.view = view
 
-  def select_space(self, board, player_marker):
+  def select_space(self, board):
     return self.view.get_player_move(board)
