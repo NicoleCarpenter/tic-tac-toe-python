@@ -7,7 +7,7 @@ class MockMoveGenerator(MoveGenerator):
     self.select_space_called = False
     self.select_space_return = ''
 
-  def select_space(self, board_size, active_board):
+  def select_space(self, board):
     self.select_space_called = True
     return self.select_space_return
 

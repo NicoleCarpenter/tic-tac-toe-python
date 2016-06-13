@@ -4,5 +4,5 @@ class MoveGenerator(object):
   __metaclass__ = abc.ABCMeta
 
   @abc.abstractmethod
-  def select_space(self, board, player_marker):
+  def select_space(self, board):
     pass

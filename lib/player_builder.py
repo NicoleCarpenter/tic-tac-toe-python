@@ -9,5 +9,5 @@ class PlayerBuilder(object):
   def build_player(self, name, marker):
     if name != 'Computer':
       return Player(name, marker, self.human_move_generator)
-    else: 
+    else:
       return Player(name, marker, self.computer_move_generator)

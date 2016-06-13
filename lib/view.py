@@ -50,7 +50,7 @@ class View(Viewable):
   def print_board(self, board):
     if all(isinstance(item, int) for item in board):
       formatted_board_positions = self.board_presenter.find_printable_board_positions(board)
-      self.io.display(self.board_presenter.format_board_to_string(formatted_board_positions)) 
+      self.io.display(self.board_presenter.format_board_to_string(formatted_board_positions))
     else:
       self.io.display(self.board_presenter.format_board_to_string(board))
 

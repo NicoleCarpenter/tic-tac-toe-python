@@ -25,7 +25,7 @@ class TestTTTGame(unittest.TestCase):
     self.board.stub_is_tie_condition_met(True)
     self.players[0].move_generator.stub_select_space_return('1')
     self.game.play_game()
-    
+
     self.assertEquals(self.view.print_board_called, True)
     self.assertEquals(self.view.prompt_player_move_called, True)
     self.assertEquals(self.view.prompt_player_move_called_with, 'Player 1')
@@ -45,7 +45,7 @@ class TestTTTGame(unittest.TestCase):
     self.board.stub_find_winning_marker('X')
     self.players[0].move_generator.stub_select_space_return('1')
     self.game.play_game()
-    
+
     self.assertEquals(self.view.print_board_called, True)
     self.assertEquals(self.view.prompt_player_move_called, True)
     self.assertEquals(self.view.prompt_player_move_called_with, 'Player 1')

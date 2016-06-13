@@ -18,11 +18,11 @@ if __name__ == '__main__':
   selection_validator = SelectionValidator()
   ttt_board_presenter = TTTBoardPresenter()
   view = View(io, move_validator, selection_validator, string_validator, ttt_board_presenter)
-  
+
   human_move_generator = HumanMoveGenerator(view)
   computer_move_generator = ComputerMoveGenerator(view)
   player_builder = PlayerBuilder(human_move_generator, computer_move_generator)
-  
+
   tttsetup = TTTSetup(view, player_builder)
 
   board_size = 9
