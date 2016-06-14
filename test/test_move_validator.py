@@ -1,6 +1,9 @@
 import unittest
+import config
 from lib.ttt.ttt_board import TTTBoard
 from lib.move_validator import MoveValidator
+
+xxx = config.OPEN_SPACE
 
 class TestMoveValidator(unittest.TestCase):
 
@@ -29,5 +32,8 @@ class TestMoveValidator(unittest.TestCase):
     self.assertEquals(self.is_valid_return(' '), False)
 
   def test_validate_move_fail_space_taken(self):
-    self.board.active_board = ['X','  ','  ','  ','  ','  ','  ','  ','  ']
+    self.board.active_board = \
+    [ 'X', xxx, xxx,
+      xxx, xxx, xxx,
+      xxx, xxx, xxx ]
     self.assertEquals(self.is_valid_return('1'), False)

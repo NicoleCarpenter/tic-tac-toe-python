@@ -2,35 +2,36 @@ import abc
 import copy
 import config
 from lib.move_generator import MoveGenerator
+    
+STARTING_DEPTH = 0
+MAX_DEPTH = 7
+TIE_SCORE = 0
+WINNING_SCORE = -10
 
 class ComputerMoveGenerator(MoveGenerator):
 
   def __init__(self, view):
     self.view = view
-    self.STARTING_DEPTH = 0
-    self.MAX_DEPTH = 7
-    self.TIE_SCORE = 0
-    self.WINNING_SCORE = -10
-    self.computer_marker = config.OPPONENT_MARKER
-    self.opponent_marker = config.PLAYER_MARKER
+    computer_marker = config.OPPONENT_MARKER
+    opponent_marker = config.PLAYER_MARKER
+    self.markers = {1: computer_marker, -1: opponent_marker}
 
   def select_space(self, board):
     self.view.display_computer_thinking()
-    markers = {1: self.computer_marker, -1: self.opponent_marker}
-    return self.__negamax(board, markers, self.STARTING_DEPTH, 1, -float('inf'), float('inf'))
+    return self.__negamax(board, STARTING_DEPTH, 1, -float('inf'), float('inf'))
 
-  def __negamax(self, board, markers, depth, color, alpha, beta):
+  def __negamax(self, board, depth, color, alpha, beta):
     negamax_scores = {}
     best_score = -float('inf')
     best_move = -1
 
-    if board.is_tie_condition_met() or board.find_winning_marker() != None:
+    if self.__is_terminal_node(board):
       return self.__score(board, depth)
 
     for space in board.find_open_spaces():
       temp_board = copy.deepcopy(board)
-      temp_board.place_piece(markers[color], space + 1)
-      score = -self.__negamax(temp_board, markers, depth + 1, -color, -beta, -alpha)
+      temp_board.place_piece(self.markers[color], space + 1)
+      score = -self.__negamax(temp_board, depth + 1, -color, -beta, -alpha)
 
       if best_score < score:
         best_score = score
@@ -40,21 +41,24 @@ class ComputerMoveGenerator(MoveGenerator):
       if alpha >= beta:
         break
 
-    if not self.__is_full_board_evaluated(depth):
-      return best_score
-    else:
+    if self.__is_full_board_evaluated(depth):
       return best_move + 1
+    else:
+      return best_score
+
+  def __is_terminal_node(self, board):
+    return board.is_tie_condition_met() or board.find_winning_marker() != None
 
   def __score(self, board, depth):
     if self.__is_max_node_depth(depth):
-      return self.TIE_SCORE
+      return TIE_SCORE
     elif board.find_winning_marker() != None:
-      return self.WINNING_SCORE
+      return WINNING_SCORE
     else:
-      return self.TIE_SCORE
+      return TIE_SCORE
 
   def __is_max_node_depth(self, depth):
-    return depth >= self.MAX_DEPTH
+    return depth >= MAX_DEPTH
 
   def __is_full_board_evaluated(self, depth):
-    return depth == self.STARTING_DEPTH
+    return depth == STARTING_DEPTH
