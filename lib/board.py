@@ -4,7 +4,6 @@ class Board(object):
 
   def __init__(self, view):
     __metaclass__ = abc.ABCMeta
-    self.view = view
 
   @abc.abstractmethod
   def place_piece(self, marker, space):

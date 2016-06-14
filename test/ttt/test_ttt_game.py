@@ -20,7 +20,10 @@ class TestTTTGame(unittest.TestCase):
     del self.game
 
   def test_play_game_tie(self):
-    self.board.active_board = ['  ','O','X','X','O','X','O','X','O']
+    self.board.active_board = \
+    ['  ', 'O', 'X',
+      'X', 'O', 'X',
+      'O', 'X', 'O']
     self.board.stub_board_positions([1,2,3,4,5,6,7,8,9])
     self.board.stub_is_tie_condition_met(True)
     self.players[0].move_generator.stub_select_space_return('1')
