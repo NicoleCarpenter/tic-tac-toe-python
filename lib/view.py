@@ -43,6 +43,7 @@ class View(Viewable):
   def get_player_move(self, board):
     move = self.io.get_user_input()
     while not self.move_validator.is_valid(move, board):
+      print 'hello'
       self.io.display('Invalid move')
       move = self.io.get_user_input('Select an open space from 1 to {0}: '.format(board.board_size))
     return move

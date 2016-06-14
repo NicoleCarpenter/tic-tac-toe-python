@@ -1,5 +1,8 @@
 import unittest
+import config
 from lib.ttt.ttt_board_presenter import TTTBoardPresenter
+
+open_space = config.OPEN_SPACE
 
 class TestTTTBoardPresenter(unittest.TestCase):
 
@@ -7,7 +10,7 @@ class TestTTTBoardPresenter(unittest.TestCase):
     self.board_presenter = TTTBoardPresenter()
 
   def test_format_to_board_string_standard(self):
-    empty_board = ['  '] * 9
+    empty_board = [open_space] * 9
     printed_board = self.board_presenter.format_board_to_string(empty_board)
     self.assertEquals(printed_board, '   |   |  \n===+===+===\n   |   |  \n===+===+===\n   |   |  \n')
 
@@ -20,7 +23,7 @@ class TestTTTBoardPresenter(unittest.TestCase):
 
   def test_format_to_board_string_large(self):
     large_board_size = 16
-    empty_board = ['  '] * large_board_size
+    empty_board = [open_space] * large_board_size
     printed_board = self.board_presenter.format_board_to_string(empty_board)
     self.assertEquals(printed_board, '   |   |   |  \n===+===+===+===\n   |   |   |  \n===+===+===+===\n   |   |   |  \n===+===+===+===\n   |   |   |  \n')
 

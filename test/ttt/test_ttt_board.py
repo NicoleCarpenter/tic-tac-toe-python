@@ -1,5 +1,8 @@
 import unittest
+import config
 from lib.ttt.ttt_board import TTTBoard
+
+xxx = config.OPEN_SPACE
 
 class TestTTTBoard(unittest.TestCase):
 
@@ -23,115 +26,115 @@ class TestTTTBoard(unittest.TestCase):
 
   def test_is_tie_condition_met(self):
     self.board.active_board = \
-    ['X','X','X',
-     'X','X','X',
-     'X','X','X']
+    [ 'X', 'X', 'X',
+      'X', 'X', 'X',
+      'X', 'X', 'X' ]
     self.assertTrue(self.board.is_tie_condition_met())
 
     self.board.active_board = \
-    ['O','O','O',
-     'O','O','O',
-     'O','O','O']
+    [ 'O', 'O', 'O',
+      'O', 'O', 'O',
+      'O', 'O', 'O' ]
     self.assertTrue(self.board.is_tie_condition_met())
 
     self.board.active_board = \
-    ['X','X','O',
-     'X','X','O',
-     'O','O','X']
+    [ 'X', 'X', 'O',
+      'X', 'X', 'O',
+      'O', 'O', 'X' ]
     self.assertTrue(self.board.is_tie_condition_met())
 
   def test_tie_condition_not_met(self):
     self.board.active_board = \
-    ['  ','X','X',
-      'X','X','X',
-      'X','X','X']
+    [ xxx, 'X', 'X',
+      'X', 'X', 'X',
+      'X', 'X', 'X' ]
     self.assertFalse(self.board.is_tie_condition_met())
 
     self.board.active_board = \
-    ['  ','  ','  ',
-     '  ','  ','  ',
-     '  ','  ','  ']
+    [ xxx, xxx, xxx,
+      xxx, xxx, xxx,
+      xxx, xxx, xxx ]
     self.assertFalse(self.board.is_tie_condition_met())
 
   def test_find_winning_marker_row(self):
     self.board.active_board = \
     [ 'X', 'X', 'X',
-     '  ','  ','  ',
-     '  ','  ','  ']
+      xxx, xxx, xxx,
+      xxx, xxx, xxx ]
     self.assertEquals(self.board.find_winning_marker(), 'X')
 
     self.board.active_board = \
-    [ '  ','  ','  ',
+    [  xxx, xxx, xxx,
        'X', 'X', 'X',
-      '  ','  ','  ']
+       xxx, xxx, xxx ]
     self.assertEquals(self.board.find_winning_marker(), 'X')
 
     self.board.active_board = \
-    ['  ','  ','  ',
-     '  ','  ','  ',
-      'X', 'X', 'X']
+    [ xxx, xxx, xxx,
+      xxx, xxx, xxx,
+      'X', 'X', 'X' ]
     self.assertEquals(self.board.find_winning_marker(), 'X')
 
   def test_find_winning_marker_column(self):
     self.board.active_board = \
-    ['X','  ','  ',
-     'X','  ','  ',
-     'X','  ','  ']
+    [ 'X', xxx, xxx,
+      'X', xxx, xxx,
+      'X', xxx, xxx ]
     self.assertEquals(self.board.find_winning_marker(), 'X')
 
     self.board.active_board = \
-    ['  ', 'X','  ',
-     '  ', 'X','  ',
-     '  ', 'X','  ']
+    [ xxx, 'X', xxx,
+      xxx, 'X', xxx,
+      xxx, 'X', xxx ]
     self.assertEquals(self.board.find_winning_marker(), 'X')
 
     self.board.active_board = \
-    ['  ','  ', 'X',
-     '  ','  ', 'X',
-     '  ','  ', 'X']
+    [ xxx, xxx, 'X',
+      xxx, xxx, 'X',
+      xxx, xxx, 'X' ]
     self.assertEquals(self.board.find_winning_marker(), 'X')
 
   def test_find_winning_marker_diagonal(self):
     self.board.active_board = \
-    [ 'X','  ','  ',
-     '  ', 'X','  ',
-     '  ','  ', 'X']
+    [ 'X', xxx, xxx,
+      xxx, 'X', xxx,
+      xxx, xxx, 'X' ]
     self.assertEquals(self.board.find_winning_marker(), 'X')
 
     self.board.active_board = \
-    ['  ','  ', 'X',
-     '  ', 'X','  ',
-      'X','  ','  ']
+    [ xxx, xxx, 'X',
+      xxx, 'X', xxx,
+      'X', xxx, xxx ]
     self.assertEquals(self.board.find_winning_marker(), 'X')
 
   def test_find_winning_marker_none(self):
     self.board.active_board = \
-    ['  ','  ','  ',
-     '  ','  ','  ',
-     '  ','  ','  ']
+    [ xxx, xxx, xxx,
+      xxx, xxx, xxx,
+      xxx, xxx, xxx ]
     self.assertEquals(self.board.find_winning_marker(), None)
 
     self.board.active_board = \
     [ 'X', 'O', 'X',
-     '  ','  ','  ',
-     '  ','  ','  ']
+      xxx, xxx, xxx,
+      xxx, xxx, xxx ]
     self.assertEquals(self.board.find_winning_marker(), None)
 
   def test_find_open_spaces(self):
     self.board.active_board = \
-    ['  ','  ','  ',
-     '  ','  ','  ',
-     '  ','  ','  ']
+    [ xxx, xxx, xxx,
+      xxx, xxx, xxx,
+      xxx, xxx, xxx ]
     self.assertEquals(self.board.find_open_spaces(), [0,1,2,3,4,5,6,7,8])
 
     self.board.active_board = \
-    ['  ','  ','  ',
+    [ xxx, xxx, xxx,
       'X', 'X', 'X',
-      'X', 'X', 'X']
+      'X', 'X', 'X' ]
     self.assertEquals(self.board.find_open_spaces(), [0,1,2])
 
     self.board.active_board = \
     [ 'X', 'X', 'X',
       'X', 'X', 'X',
-      'X', 'X', 'X']
+      'X', 'X', 'X' ]
     self.assertEquals(self.board.find_open_spaces(), [])

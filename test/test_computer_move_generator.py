@@ -1,8 +1,11 @@
 import unittest
 import copy
+import config
 from test.mocks.mock_view import MockView
 from lib.ttt.ttt_board import TTTBoard
 from lib.computer_move_generator import ComputerMoveGenerator
+
+xxx = config.OPEN_SPACE
 
 class TestComputerMoveGenerator(unittest.TestCase):
 
@@ -13,36 +16,36 @@ class TestComputerMoveGenerator(unittest.TestCase):
 
   def test_select_space_tie(self):
     self.board.active_board = \
-    ['X','O','O',
-     'X','X','O',
-     'O','X','  ']
+    [ 'X', 'O', 'O',
+      'X', 'X', 'O',
+      'O', 'X', xxx ]
     move = self.move_generator.select_space(self.board)
     self.assertEquals(move, 9)
     self.assertEquals(self.view.display_computer_thinking_called, True)
 
   def test_select_space_block(self):
     self.board.active_board = \
-    ['  ','  ','  ',
-     '  ','O','  ',
-     '  ','X','X']
+    [ xxx, xxx, xxx,
+      xxx, 'O', xxx,
+      xxx, 'X', 'X' ]
     move = self.move_generator.select_space(self.board)
     self.assertEquals(move, 7)
     self.assertEquals(self.view.display_computer_thinking_called, True)
 
   def test_select_space_win(self):
     self.board.active_board = \
-    ['O', 'O', '  ',
-     '  ','  ','  ',
-     '  ','X' ,'X']
+    [ 'O', 'O', xxx,
+      xxx, xxx, xxx,
+      xxx, 'X' ,'X' ]
     move = self.move_generator.select_space(self.board)
     self.assertEquals(move, 3)
     self.assertEquals(self.view.display_computer_thinking_called, True)
 
   def test_select_space_second_move_block(self):
     self.board.active_board = \
-    ['X', '  ','  ',
-     '  ', 'O','  ',
-     '  ','  ','X']
+    [ 'X', xxx, xxx,
+      xxx, 'O', xxx,
+      xxx, xxx,' X' ]
     move = self.move_generator.select_space(self.board)
     self.assertNotEqual(move, 3)
     self.assertNotEqual(move, 7)
@@ -52,25 +55,25 @@ class TestComputerMoveGenerator(unittest.TestCase):
 
   def test_select_space_center_fork(self):
     self.board.active_board = \
-    ['O', 'O', 'X',
-     'X', '  ','  ',
-     '  ','  ','  ']
+    [ 'O', 'O', 'X',
+      'X', xxx, xxx,
+      xxx, xxx, xxx]
     move = self.move_generator.select_space(self.board)
     self.assertEquals(move, 5)
 
   def test_select_space_center_fork(self):
     self.board.active_board = \
-    ['X', 'X', 'O',
-     '  ','  ','  ',
-     '  ','  ','  ']
+    [ 'X', 'X', 'O',
+      xxx, xxx, xxx,
+      xxx, xxx, xxx]
     move = self.move_generator.select_space(self.board)
     self.assertIn(move, [5, 6])
 
   def test_select_space_last_move_win(self):
     self.board.active_board = \
-    ['X', 'O', 'X',
-     'O', 'O', 'X',
-     '  ','X', '  ']
+    [ 'X', 'O', 'X',
+      'O', 'O', 'X',
+      xxx, 'X', xxx ]
     move = self.move_generator.select_space(self.board)
     self.assertEquals(move, 9)
 

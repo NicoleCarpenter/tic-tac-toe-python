@@ -1,5 +1,8 @@
 import math
 import itertools
+import config
+
+open_space = config.OPEN_SPACE
 
 class TTTBoardPresenter(object):
 
@@ -19,7 +22,7 @@ class TTTBoardPresenter(object):
     return map('{:1}'.format, board)
 
   def __add_leading_spaces(self, board):
-    return [' ' + x if x!='  ' else x for x in board]
+    return [' ' + x if x != open_space else x for x in board]
 
   def __find_number_of_rows(self, board):
     return int(math.sqrt(len(board)))

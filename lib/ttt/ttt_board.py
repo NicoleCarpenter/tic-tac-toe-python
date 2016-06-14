@@ -1,12 +1,15 @@
 import abc
 import math
+import config
 from lib.board import Board
+
+open_space = config.OPEN_SPACE
 
 class TTTBoard(Board):
 
   def __init__(self, board_size):
     self.board_size = board_size
-    self.active_board = ['  '] * self.board_size
+    self.active_board = [open_space] * self.board_size
     self.board_positions = self.__find_board_postions()
 
   def place_piece(self, marker, space):
@@ -16,13 +19,13 @@ class TTTBoard(Board):
     return super(TTTBoard, self).find_open_spaces(self.active_board)
 
   def is_tie_condition_met(self):
-    return not '  ' in self.active_board
+    return not open_space in self.active_board
 
   def find_winning_marker(self):
     winning_combinations = self.__find_winning_combinations()
     for combo in winning_combinations:
       values_at_combo_positions = self.__find_values_at_combo_positions(combo)
-      if self.__has_unique_values(values_at_combo_positions) and values_at_combo_positions[0] != '  ':
+      if self.__has_unique_values(values_at_combo_positions) and values_at_combo_positions[0] != open_space:
         return values_at_combo_positions[0]
 
   def __find_board_postions(self):
